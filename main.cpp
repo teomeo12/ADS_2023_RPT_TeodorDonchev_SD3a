@@ -10,7 +10,7 @@ int main()
     try
     {
 		//Question 1
-		OrderedArray<int> arr(0, 7);
+		OrderedArray<int> arr(5, 7);
 		arr.push(6);
 		arr.push(2);
 		arr.push(2);
