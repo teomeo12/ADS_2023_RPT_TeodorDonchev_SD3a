@@ -1,4 +1,4 @@
- #pragma once
+#pragma once
 #include<iostream>
 using namespace std;
 
@@ -16,12 +16,14 @@ private:
 public:
 
 	OrderedArray();						  //default constructor
-	OrderedArray(int size, int grow=1); //constructor with custom growSize
+	OrderedArray(int growSize); //constructor with custom growSize
 	void push(const T& newElement);       //insert an element in to an array 
 	int length();						  //return the length of the array	
 	int capacity();						  //return the capacity of the array
 	int getGrowSize();					  //return the grow size of the array	
-	T getElement(int index);			  //return the element at the given index
+	T getElement(int index);			  //return the element at the given 
+	bool remove(int index);				  //remove an element at the given index
+	int search(const T& searchKey);	  //search for an element in the array
 	void clear();						  //clear the array
 	void print();						  //print the array
 	T& sumOfTwoElements();		        //sum of the first and second elements
@@ -37,26 +39,24 @@ public:
 template<class T>
 OrderedArray<T>::OrderedArray()
 {
-	array = nullptr;
+	growSize = 10;
+	array = new T[growSize];
 	lengthOfArr = 0;
 	maxSize = 0;
-	growSize = 1;
+	sum = 0;
 }
 
 template<class T>
-OrderedArray<T>::OrderedArray(int size, int grow)
+OrderedArray<T>::OrderedArray(int grow)
 {
-	if (size <= 0)
-		throw invalid_argument("The size of the array must be greater than 0");
-	
 	if (grow <= 0)
 		throw invalid_argument("The grow size of the array must be greater than 0");
 	
-
-	array = new T[size];
+	array = new T[grow];
 	lengthOfArr = 0;
-	maxSize = size;
+	maxSize = 0;
 	growSize = grow;
+	sum = 0;
 }
 
 template<class T>
@@ -75,8 +75,6 @@ int OrderedArray<T>::capacity()
 {
 	return maxSize;
 }
-
-
 
 template<class T>
 void OrderedArray<T>:: push(const T& newElement) {
@@ -140,6 +138,52 @@ T OrderedArray<T>::getElement(int index)
 }
 
 template<class T>
+int OrderedArray<T>::search(const T& searchKey) {
+	//linear search
+
+	for (int i = 0; i < lengthOfArr; i++) {
+		if (array[i] == searchKey) {
+			return i;
+
+		}
+
+	}
+	return -1;
+	//binary search
+	
+	/*int pStart = 0;
+	int pEnd = array[lengthOfArr - 1];
+	int pMid = 0;
+	while (pStart <= pEnd) {
+		pMid = (pStart + pEnd) / 2;
+		if (array[pMid] == searchKey) {
+			return pMid;
+		}
+		else if (array[pMid] > searchKey) {
+			pEnd = pMid - 1;
+		}
+		else {
+			pStart = pMid + 1;
+		}
+	}
+	return -1;*/
+
+}
+template<class T>
+bool OrderedArray<T>::remove(int index) {
+	if (index < 0 || index >= lengthOfArr)
+		//throw out_of_range("The index is out of range");
+		return false;
+
+	//int element = array[index];
+	for (int i = index + 1; i < lengthOfArr; i++) {
+		array[i - 1] = array[i];
+	}
+	lengthOfArr -= 1;
+	return true;
+}
+
+template<class T>
 void OrderedArray<T>::clear()
 {
 	
@@ -156,6 +200,8 @@ void OrderedArray<T>::clear()
 template<class T>
 void OrderedArray<T>::print()
 {
+	if(lengthOfArr==0)
+		cout<<"The array is Empty!: ";
 	cout << "[";
 	for (int i = 0; i < lengthOfArr; i++)
 	{
