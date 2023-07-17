@@ -226,14 +226,11 @@ namespace ADS2023RPTTEST
 			arr1.remove(0);
 			arr.remove(0);
 			Assert::AreEqual(arr1.length(), 1);
-
 		}
 	
 		//test search 
-
 		TEST_METHOD(TestSearch)
 		{
-
 			OrderedArray<int> arr(1);
 			arr.push(6);
 			arr.push(2);
@@ -241,18 +238,17 @@ namespace ADS2023RPTTEST
 			arr.push(4);
 			arr.push(1);
 
-			Assert::AreEqual(arr.search(2), 2);
-			Assert::AreEqual(arr.search(4), 4);
-			Assert::AreEqual(arr.search(6), 6);
-			Assert::AreEqual(arr.search(1), 1);
-			Assert::AreNotEqual(arr.search(0), -1);
+			Assert::AreEqual(arr.search(2), 1);
+			Assert::AreEqual(arr.search(4), 3);
+			Assert::AreEqual(arr.search(6), 4);
+			Assert::AreEqual(arr.search(1), 0);
+			Assert::AreNotEqual(arr.search(0), 0);
 			Assert::AreEqual(arr.search(7), -1);
 			Assert::AreEqual(arr.search(3), -1);
 			
 		}
 
 		//test clear function
-
 		TEST_METHOD(TestClear)
 		{
 
@@ -270,7 +266,6 @@ namespace ADS2023RPTTEST
 		}
 
 		//test sumOfTwoElements function
-
 		TEST_METHOD(TestSumOfTwoElements)
 		{
 
@@ -301,10 +296,9 @@ namespace ADS2023RPTTEST
 		}
 
 		//test operator == function
-
 		TEST_METHOD(TestOperator)
 		{
-
+			//Same size Array of ints
 			OrderedArray<int> arr(1);
 			arr.push(6);
 			arr.push(2);
@@ -321,6 +315,7 @@ namespace ADS2023RPTTEST
 
 			Assert::IsTrue(arr == arr1);
 
+			//Different size Array of ints
 			OrderedArray<int> arr2(1);
 			arr2.push(6);
 			arr2.push(2);
@@ -331,6 +326,7 @@ namespace ADS2023RPTTEST
 
 			Assert::IsFalse(arr == arr2);
 
+			//Same size Array of doubles
 			OrderedArray<double> arrDoubles(1);
 			arrDoubles.push(6.4);
 			arrDoubles.push(2.3);
@@ -346,7 +342,8 @@ namespace ADS2023RPTTEST
 			arrDoubles1.push(1.2);
 				
 			Assert::IsTrue(arrDoubles == arrDoubles1);
-				
+			
+			//Different size Array of doubles
 			OrderedArray<double> arrDoubles2(1);
 			arrDoubles2.push(6.4);
 			arrDoubles2.push(2.3);
@@ -356,22 +353,307 @@ namespace ADS2023RPTTEST
 			arrDoubles2.push(1.2);
 				
 			Assert::IsFalse(arrDoubles == arrDoubles2);
-				
-
-
 		}
 
-		
-
-		// exception test with a lambda function	
-		/*TEST_METHOD(TestExeptions)
+		//test operator != function
+		TEST_METHOD(TestOperatorNotEqual)
 		{
-			OrderedArray<int> arr(5, 0);
-			void(*funct)() = [] {OrderedArray<int>arr(5, 0); };
-			Assert::ExpectException<invalid_argument>(funct);
-		}*/
-		
-		
+			//Same size Array of ints
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(4);
+			arr.push(1);
+
+			OrderedArray<int> arr1(1);
+			arr1.push(6);
+			arr1.push(2);
+			arr1.push(2);
+			arr1.push(4);
+			arr1.push(1);
+
+			Assert::IsFalse(arr != arr1);
+
+			//Different size Array of ints
+			OrderedArray<int> arr2(1);
+			arr2.push(6);
+			arr2.push(2);
+			arr2.push(2);
+			arr2.push(4);
+			arr2.push(1);
+			arr2.push(1);
+
+			Assert::IsTrue(arr != arr2);
+
+			//Same size array of doubles
+			OrderedArray<double> arrDoubles(1);
+			arrDoubles.push(6.4);
+			arrDoubles.push(2.3);
+			arrDoubles.push(2.3);
+			arrDoubles.push(4.5);
+			arrDoubles.push(1.2);
+
+			OrderedArray<double> arrDoubles1(1);
+			arrDoubles1.push(6.4);
+			arrDoubles1.push(2.3);
+			arrDoubles1.push(2.3);
+			arrDoubles1.push(4.5);
+			arrDoubles1.push(1.2);
+
+			Assert::IsFalse(arrDoubles != arrDoubles1);
+
+			//Different size array of doubles 
+			OrderedArray<double> arrDoubles2(1);
+			arrDoubles2.push(6.4);
+			arrDoubles2.push(2.3);
+			arrDoubles2.push(2.3);
+			arrDoubles2.push(4.5);
+			arrDoubles2.push(1.2);
+			arrDoubles2.push(1.2);
+
+			Assert::IsTrue(arrDoubles != arrDoubles2);
+		}
+
+		//test operator < function
+		TEST_METHOD(TestOperatorLessThan)
+		{
+			//Same size Array of ints
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(4);
+			arr.push(1);
+
+			OrderedArray<int> arr1(1);
+			arr1.push(6);
+			arr1.push(2);
+			arr1.push(2);
+			arr1.push(4);
+			arr1.push(1);
+
+			Assert::IsFalse(arr < arr1);
+
+			//Different size Array of ints
+			OrderedArray<int> arr2(1);
+			arr2.push(6);
+			arr2.push(2);
+			arr2.push(2);
+			arr2.push(4);
+			arr2.push(1);
+			arr2.push(1);
+
+			Assert::IsTrue(arr < arr2);
+
+			//Same size Array of doubles
+			OrderedArray<double> arrDoubles(1);
+			arrDoubles.push(6.4);
+			arrDoubles.push(2.3);
+			arrDoubles.push(2.3);
+			arrDoubles.push(4.5);
+			arrDoubles.push(1.2);
+
+			OrderedArray<double> arrDoubles1(1);
+			arrDoubles1.push(6.4);
+			arrDoubles1.push(2.3);
+			arrDoubles1.push(2.3);
+			arrDoubles1.push(4.5);
+			arrDoubles1.push(1.2);
+
+			Assert::IsFalse(arrDoubles < arrDoubles1);
+
+			//Different size Array of doubles
+			OrderedArray<double> arrDoubles2(1);
+			arrDoubles2.push(6.4);
+			arrDoubles2.push(2.3);
+			arrDoubles2.push(2.3);
+			arrDoubles2.push(4.5);
+			arrDoubles2.push(1.2);
+			arrDoubles2.push(1.2);
+
+			Assert::IsTrue(arrDoubles < arrDoubles2);
+		}
+
+		//test operator > function
+		TEST_METHOD(TestOperatorGreaterThan)
+		{
+			//Same size Array of ints
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(4);
+			arr.push(1);
+
+			OrderedArray<int> arr1(1);
+			arr1.push(6);
+			arr1.push(2);
+			arr1.push(2);
+			arr1.push(4);
+			arr1.push(1);
+
+			Assert::IsFalse(arr > arr1);
+
+			//Different size Array of ints
+			OrderedArray<int> arr2(1);
+			arr2.push(6);
+			arr2.push(2);
+			arr2.push(2);
+			arr2.push(4);
+			arr2.push(1);
+			arr2.push(1);
+
+			Assert::IsFalse(arr > arr2);
+
+			//Same size Array of doubles
+			OrderedArray<double> arrDoubles(1);
+			arrDoubles.push(6.4);
+			arrDoubles.push(2.3);
+			arrDoubles.push(2.3);
+			arrDoubles.push(4.5);
+			arrDoubles.push(1.2);
+
+			OrderedArray<double> arrDoubles1(1);
+			arrDoubles1.push(6.4);
+			arrDoubles1.push(2.3);
+			arrDoubles1.push(2.3);
+			arrDoubles1.push(4.5);
+			arrDoubles1.push(1.2);
+
+			Assert::IsFalse(arrDoubles > arrDoubles1);
+
+			//Different size Array of doubles
+			OrderedArray<double> arrDoubles2(1);
+			arrDoubles2.push(6.4);
+			arrDoubles2.push(2.3);
+			arrDoubles2.push(2.3);
+			arrDoubles2.push(4.5);
+			arrDoubles2.push(1.2);
+			arrDoubles2.push(1.2);
+
+			Assert::IsFalse(arrDoubles > arrDoubles2);
+		}
+
+		//test operator <= function
+		TEST_METHOD(TestOperatorLessThanEqualTo)
+		{
+			//Same size Array of ints
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(4);
+			arr.push(1);
+
+			OrderedArray<int> arr1(1);
+			arr1.push(6);
+			arr1.push(2);
+			arr1.push(2);
+			arr1.push(4);
+			arr1.push(1);
+
+			Assert::IsTrue(arr <= arr1);
+
+			//Different size Array of ints
+			OrderedArray<int> arr2(1);
+			arr2.push(6);
+			arr2.push(2);
+			arr2.push(2);
+			arr2.push(4);
+			arr2.push(1);
+			arr2.push(1);
+
+			Assert::IsTrue(arr <= arr2);
+
+			//Same size Array of doubles
+			OrderedArray<double> arrDoubles(1);
+			arrDoubles.push(6.4);
+			arrDoubles.push(2.3);
+			arrDoubles.push(2.3);
+			arrDoubles.push(4.5);
+			arrDoubles.push(1.2);
+
+			OrderedArray<double> arrDoubles1(1);
+			arrDoubles1.push(6.4);
+			arrDoubles1.push(2.3);
+			arrDoubles1.push(2.3);
+			arrDoubles1.push(4.5);
+			arrDoubles1.push(1.2);
+
+			Assert::IsTrue(arrDoubles <= arrDoubles1);
+
+			//Different size Array of doubles
+			OrderedArray<double> arrDoubles2(1);
+			arrDoubles2.push(6.4);
+			arrDoubles2.push(2.3);
+			arrDoubles2.push(2.3);
+			arrDoubles2.push(4.5);
+			arrDoubles2.push(1.2);
+			arrDoubles2.push(1.2);
+
+			Assert::IsTrue(arrDoubles <= arrDoubles2);
+		}
+
+		//test operator >= function
+		TEST_METHOD(TestOperatorGreaterThanEqualTo)
+		{
+			//Same size Array of ints
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(4);
+			arr.push(1);
+
+			OrderedArray<int> arr1(1);
+			arr1.push(6);
+			arr1.push(2);
+			arr1.push(2);
+			arr1.push(4);
+			arr1.push(1);
+
+			Assert::IsTrue(arr >= arr1);
+
+			//Different size Array of ints
+			OrderedArray<int> arr2(1);
+			arr2.push(6);
+			arr2.push(2);
+			arr2.push(2);
+			arr2.push(4);
+			arr2.push(1);
+			arr2.push(1);
+
+			Assert::IsFalse(arr >= arr2);
+
+			//Same size Array of doubles
+			OrderedArray<double> arrDoubles(1);
+			arrDoubles.push(6.4);
+			arrDoubles.push(2.3);
+			arrDoubles.push(2.3);
+			arrDoubles.push(4.5);
+			arrDoubles.push(1.2);
+
+			OrderedArray<double> arrDoubles1(1);
+			arrDoubles1.push(6.4);
+			arrDoubles1.push(2.3);
+			arrDoubles1.push(2.3);
+			arrDoubles1.push(4.5);
+			arrDoubles1.push(1.2);
+
+			Assert::IsTrue(arrDoubles >= arrDoubles1);
+
+			//Different size Array of doubles
+			OrderedArray<double> arrDoubles2(1);
+			arrDoubles2.push(6.4);
+			arrDoubles2.push(2.3);
+			arrDoubles2.push(2.3);
+			arrDoubles2.push(4.5);
+			arrDoubles2.push(1.2);
+			arrDoubles2.push(1.2);
+
+			Assert::IsFalse(arrDoubles >= arrDoubles2);
+		}
 
 	};
 }

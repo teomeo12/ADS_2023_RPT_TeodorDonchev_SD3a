@@ -144,9 +144,7 @@ int OrderedArray<T>::search(const T& searchKey) {
 	for (int i = 0; i < lengthOfArr; i++) {
 		if (array[i] == searchKey) {
 			return i;
-
 		}
-
 	}
 	return -1;
 	//binary search
@@ -234,13 +232,17 @@ template<class T>
  template<class T>
  bool OrderedArray<T>::operator!=(const OrderedArray<T>& other)
  {
-	 if (lengthOfArr != other.lengthOfArr)
+	 if (lengthOfArr != other.lengthOfArr) {
 		 return true;
-	 for (int i = 0; i < lengthOfArr; i++)
-	 {
-		 if (array[i] != other.array[i])
-			 return true;
 	 }
+	 else {
+		 for (int i = 0; i < lengthOfArr; i++)
+		 {
+			 if (array[i] != other.array[i])
+				 return true;
+		 }
+	 }
+	
 	 return false;
  }
 
@@ -248,57 +250,96 @@ template<class T>
  template<class T>
  bool OrderedArray<T>::operator>(const OrderedArray<T>& other)
  {
-	 if (lengthOfArr > other.lengthOfArr)
+	 if (lengthOfArr > other.lengthOfArr) {
 		 return true;
-	 for (int i = 0; i < lengthOfArr; i++)
-	 {
-		 if (array[i] > other.array[i])
-			 return true;
 	 }
-	 return false;
+	 else if (lengthOfArr < other.lengthOfArr) {
+		 return false;
+	 }
+	 else {
+		 for (int i = 0; i < lengthOfArr; i++)
+		 {
+			 if (array[i] > other.array[i])
+				 return true;
+			 else if (array[i] < other.array[i])
+				 return false;
+		 }
+		 return false;
+	 }
+ }
+ //overload >= operator function
+ template<class T>
+ bool OrderedArray<T>::operator>=(const OrderedArray<T>& other)
+ {
+	 if (lengthOfArr > other.lengthOfArr) {
+		 return true;
+	 }
+	 else if (lengthOfArr < other.lengthOfArr) {
+		 return false;
+	 }
+	 else {
+		 for (int i = 0; i < lengthOfArr; i++)
+		 {
+			 if (array[i] > other.array[i])
+				 return true;
+			 else if (array[i] < other.array[i])
+				 return false;
+		 }
+		 return true;
+	 }
  }
 
  //overload < operator function
  template<class T>
  bool OrderedArray<T>::operator<(const OrderedArray<T>& other)
  {
-	 if (lengthOfArr < other.lengthOfArr)
-		 return true;
-	 for (int i = 0; i < lengthOfArr; i++)
-	 {
-		 if (array[i] < other.array[i])
-			 return true;
-	 }
-	 return false;
- }
 
- //overload >= operator function
- template<class T>
- bool OrderedArray<T>::operator>=(const OrderedArray<T>& other)
- {
-	 if (lengthOfArr >= other.lengthOfArr)
+	 if (lengthOfArr < other.lengthOfArr) {
 		 return true;
-	 for (int i = 0; i < lengthOfArr; i++)
-	 {
-		 if (array[i] >= other.array[i])
-			 return true;
 	 }
-	 return false;
+	 else if (lengthOfArr > other.lengthOfArr) {
+		 return false;
+	 }
+	 else {
+		 for (int i = 0; i < lengthOfArr; i++)
+		 {
+			 if (array[i] < other.array[i])
+				 return true;
+			 else if (array[i]>other.array[i]) {
+				 return false;
+			 }
+		 }
+		 // The arrays are equal
+		 return false;
+	 } 
  }
-
  //overload <= operator function
  template<class T>
  bool OrderedArray<T>::operator<=(const OrderedArray<T>& other)
  {
-	 if (lengthOfArr <= other.lengthOfArr)
+
+	 if (lengthOfArr < other.lengthOfArr) {
 		 return true;
-	 for (int i = 0; i < lengthOfArr; i++)
-	 {
-		 if (array[i] <= other.array[i])
-			 return true;
 	 }
-	 return false;
+	 else if (lengthOfArr > other.lengthOfArr) {
+		 return false;
+	 }
+	 else
+	 {
+		 for (int i = 0; i < lengthOfArr; i++)
+		 {
+			 if (array[i] < other.array[i])
+				 return true;
+			 else if (array[i] > other.array[i])
+				 return false;
+		 }
+		 // The arrays are equal
+		 return true;
+	 }
  }
+ 
+
+ 
 
 
 

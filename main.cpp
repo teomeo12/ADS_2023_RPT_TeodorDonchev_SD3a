@@ -6,47 +6,51 @@
 
 using namespace std;
 
-void demoDeclareArraywithDefaultConstructor();
-void demoDeclareArraywithCustomConstructor();
-void demoArrayofDoublesCustomConstructor();
-void demoArrayofFloatsCustomConstructor();
+void arrayWithDefaultConstructor();
+void orderedArrayWithCustomConstructor();
+void orderedArrayOfDoublesCustomConstructor();
+void orderedArrayOfFloatsCustomConstructor();
+void compareEqualArrays();
+void compareNotEqualArrays();
+void compareGreatThanArray();
+void compareLessThanArray();
+void compareGreatThanEqualArray();
+void compareLessThanEqualArray();
+
 int main()
 {
     try
     {
 		//Question 1
-		//Demo of Declare an array with default constructor
-		demoDeclareArraywithDefaultConstructor();
-
+		// Declare an array with default constructor
+		arrayWithDefaultConstructor();
 
 		//Declare an array with custom constructor
-		demoDeclareArraywithCustomConstructor();
+		orderedArrayWithCustomConstructor();
 	
 		//Array of doubles with custom constructor
-		demoArrayofDoublesCustomConstructor();
+		orderedArrayOfDoublesCustomConstructor();
 	
 		//Array of floats with custom constructor
-		demoArrayofFloatsCustomConstructor();
+		orderedArrayOfFloatsCustomConstructor();
 
+		//Two equal arrays
+		compareEqualArrays();
 
-		cout << "****************************************************" << endl;
-		cout << "Comparising arrays" << endl;
-		cout << "****************************************************" << endl;
+		//Two unequal arrays
+		compareNotEqualArrays();
 
-		OrderedArray<float> arr1(1);
-		arr1.push(3.4f);
-		arr1.push(1.3f);
-		arr1.push(24.1f);
+		//Array1 is > Array2
+		compareGreatThanArray();
 
-		OrderedArray<float> arr2(1);
-		arr2.push(3.4f);
-		arr2.push(1.3f);
-		arr2.push(24.1f);
+		//Array1 is < Array2
+		compareLessThanArray();
 
-		if(arr1==arr2)
-			cout << "\narr and arr1 are equal" << endl;
-		else
-			cout << "\narr and arr1 are not equal" << endl;
+		//Array1 is >= Array2
+		compareGreatThanEqualArray();
+
+		//Array1 is <= Array2
+		compareLessThanEqualArray();
     }
     catch (invalid_argument e)
     {
@@ -68,7 +72,7 @@ int main()
   
 }
 
-void demoDeclareArraywithDefaultConstructor() {
+void arrayWithDefaultConstructor() {
 	//Declare an array with default constructor
 	cout << "**********************************************************" << endl;
 	cout << "Initializing array of integers with default constructor" << endl;
@@ -126,15 +130,29 @@ void demoDeclareArraywithDefaultConstructor() {
 
 	cout << "please enter a value " << endl;
 	int elementValueInt;
-	cin >> elementValueInt;
-	cout << "The value " << elementValueInt << " is at possition: " << array.search(elementValueInt) << endl;
+	//condition if the user enters a value that is not an integer
+	/*while (!(cin >> elementValueInt)) {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Invalid input.  Try again: ";
+	}*/
+
+	//cin >> elementValueInt;
+	//if (array.search(elementValueInt) < 0) {
+	//	cout << "The value " << elementValueInt << " is not in the array" << endl;
+
+	//}
+	//else {
+	//	cout << "The value " << elementValueInt << " is at index: " << array.search(elementValueInt) << endl;
+	//}
+
 	cout << "**************************************************" << endl;
 	cout << "End of default constructor" << endl;
 	cout << "**************************************************" << endl;
 	cout << endl;
 }
 
-void demoDeclareArraywithCustomConstructor() {
+void orderedArrayWithCustomConstructor() {
 	//Declare an array with custom constructor
 	cout << "**************************************************" << endl;
 	cout << "Initializing array of integers with custom constructor" << endl;
@@ -207,7 +225,7 @@ void demoDeclareArraywithCustomConstructor() {
 	cout << endl;
 }
 
-void demoArrayofDoublesCustomConstructor(){
+void orderedArrayOfDoublesCustomConstructor(){
 
 	cout << "**************************************************" << endl;
 	cout << "Initializing array of doubles with custom constructor" << endl;
@@ -282,7 +300,7 @@ void demoArrayofDoublesCustomConstructor(){
 	cout << endl;
 }
 
-void demoArrayofFloatsCustomConstructor() {
+void orderedArrayOfFloatsCustomConstructor() {
 	cout << "****************************************************" << endl;
 	cout << "Initializing array of floats with custom constructor" << endl;
 	cout << "****************************************************" << endl;
@@ -328,13 +346,163 @@ void demoArrayofFloatsCustomConstructor() {
 	cout << "\nSearch an element in the array" << endl;
 
 	cout << "please enter a value " << endl;
-	float elementValueFloat;
+	/*float elementValueFloat;
 	cin >> elementValueFloat;
-	cout << "The value " << elementValueFloat << " is at possition: " << arr2.search(elementValueFloat) << endl;
 
+	if (arr2.search(elementValueFloat) < 0) {
+		cout<< "The value " << elementValueFloat << " is not in the array" << endl;
+
+	}
+	else {
+		cout << "The value " << elementValueFloat << " is at possition: " << arr2.search(elementValueFloat) << endl;
+	}*/
 
 	cout << "**************************************************" << endl;
 	cout << "End of Array of floats with custom constructor" << endl;
 	cout << "**************************************************" << endl;
 	cout << endl;
+}
+
+void compareEqualArrays() {
+	cout << "****************************************************" << endl;
+	cout << "Comparising equal arrays" << endl;
+	cout << "****************************************************" << endl;
+
+	OrderedArray<float> arr1(1);
+	arr1.push(3.4f);
+	arr1.push(1.3f);
+	arr1.push(24.1f);
+
+	OrderedArray<float> arr2(1);
+	arr2.push(3.4f);
+	arr2.push(1.3f);
+	arr2.push(24.1f);
+
+	if (arr1 == arr2)
+		cout << "\narr1 and arr2 are equal\n" << endl;
+	else
+		cout << "\narr1 and arr2 are not equal\n" << endl;
+}
+
+void compareNotEqualArrays() {
+	cout << "****************************************************" << endl;
+	cout << "Comparising Not equal arrays" << endl;
+	cout << "****************************************************" << endl;
+
+	OrderedArray<float> arr1(1);
+	arr1.push(3.4f);
+	arr1.push(1.3f);
+	arr1.push(24.1f);
+
+	OrderedArray<float> arr2(1);
+	arr2.push(3.4f);
+	arr2.push(1.3f);
+	arr2.push(24.2f);
+
+	if (arr1 != arr2)
+		cout << "\narr1 and arr2 are not equal\n" << endl;
+			
+	else
+		cout << "\narr1 and arr2 are equal\n" << endl;
+}
+
+void compareGreatThanArray() {
+
+	cout << "****************************************************" << endl;
+	cout << "Comparising greater than arrays" << endl;
+	cout << "****************************************************" << endl;
+
+	OrderedArray<double> arr1(1);
+	arr1.push(3.4);
+	arr1.push(1.3);
+	arr1.push(24.1);
+
+	OrderedArray<double> arr2(1);
+	arr2.push(3.4);
+	arr2.push(1.3);
+	arr2.push(24.2);
+
+	if (arr1 > arr2)
+		cout << "\narr1 is greater than arr2\n" << endl;
+	else
+		cout << "\narr1 is not greater than arr2\n" << endl;
+}
+
+void compareLessThanArray() {
+
+	cout << "****************************************************" << endl;
+	cout << "Comparising less than arrays" << endl;
+	cout << "****************************************************" << endl;
+
+	OrderedArray<int> arr1(1);
+	arr1.push(3);
+	arr1.push(1);
+	arr1.push(24);
+	arr1.push(99);
+	
+	OrderedArray<int> arr2(1);
+	arr2.push(3);
+	arr2.push(1);
+	arr2.push(24);
+	arr2.push(98);
+	
+
+	if (arr1 < arr2)
+		cout << "\narr1 is less than arr2\n" << endl;
+	else
+		cout << "\narr1 is not less than arr2\n" << endl;
+}
+
+void compareGreatThanEqualArray() {
+
+	cout << "****************************************************" << endl;
+	cout << "Comparising greater than or equal arrays" << endl;
+	cout << "****************************************************" << endl;
+
+	OrderedArray<int> arr1(1);
+	arr1.push(3);
+	arr1.push(1);
+	arr1.push(24);
+	arr1.push(9);
+
+	OrderedArray<int> arr2(1);
+	arr2.push(3);
+	arr2.push(1);
+	arr2.push(24);
+	arr2.push(9);
+	arr2.push(2);
+	//arr2.push(999);
+	bool isEqual = arr1 >= arr2;
+
+	if(isEqual)
+		cout << "\narr1 is greater than or equal to arr2\n" << endl;
+	else
+		cout << "\narr1 is not greater than or equal to arr2\n" << endl;
+}
+
+void compareLessThanEqualArray() {
+
+	cout << "****************************************************" << endl;
+	cout << "Comparising less than or equal arrays" << endl;
+	cout << "****************************************************" << endl;
+
+	OrderedArray<int> arr1(1);
+	arr1.push(3);
+	arr1.push(1);
+	arr1.push(24);
+	arr1.push(9);
+
+	OrderedArray<int> arr2(1);
+	arr2.push(3);
+	arr2.push(1);
+	arr2.push(24);
+	arr2.push(9);
+	arr2.push(2);
+	
+	bool isEqual = arr1 <= arr2;
+
+	if (isEqual)
+		cout << "\narr1 is less than or equal to arr2\n" << endl;
+	else
+		cout << "\narr1 is not less than or equal to arr2\n" << endl;
 }
