@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../orderedArr.h"
+#include "../myset.h"
+
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -19,7 +21,7 @@ namespace ADS2023RPTTEST
 			Assert::AreEqual(arr.capacity(), 0);
 			Assert::AreEqual(arr.getGrowSize(), 10);
 			arr.push(2);
-			arr.push(3);		
+			arr.push(3);
 			arr.push(4);
 			arr.push(7);
 			arr.push(4);
@@ -62,14 +64,14 @@ namespace ADS2023RPTTEST
 			void(*funct)() = [] {OrderedArray<int>arr(0); };
 			Assert::ExpectException<invalid_argument>(funct);
 
-			
+
 		}
 
 		//test the exeptions with negative values
 		TEST_METHOD(ConstructorWithNegativeSize) {
-			
-		void(*funct)() = [] {OrderedArray<int>arr(-1); };
-		Assert::ExpectException<invalid_argument>(funct);
+
+			void(*funct)() = [] {OrderedArray<int>arr(-1); };
+			Assert::ExpectException<invalid_argument>(funct);
 
 		}
 
@@ -95,23 +97,23 @@ namespace ADS2023RPTTEST
 		//test push function with double
 		TEST_METHOD(TestPushDouble)
 		{
-			OrderedArray<double> arr( 2);
+			OrderedArray<double> arr(2);
 			arr.push(6.4);
 			arr.push(2.3);
 			arr.push(2.1);
 
 			Assert::AreEqual(arr.length(), 3);
 			Assert::AreEqual(arr.getGrowSize(), 2);
-			Assert::AreEqual(arr.sumOfTwoElements(), 4.4,0.001);
-			Assert::AreNotEqual(arr.sumOfTwoElements(), 4.5,0.001);
-			
+			Assert::AreEqual(arr.sumOfTwoElements(), 4.4, 0.001);
+			Assert::AreNotEqual(arr.sumOfTwoElements(), 4.5, 0.001);
+
 		}
 
 		//test push function with float
 		TEST_METHOD(TestPushFloat)
 		{
 
-			OrderedArray<float> arr2( 10);
+			OrderedArray<float> arr2(10);
 			arr2.push(3.4f);
 			arr2.push(1.3f);
 			arr2.push(23.1f);
@@ -139,7 +141,7 @@ namespace ADS2023RPTTEST
 		//test getGrowSize function
 		TEST_METHOD(TestGetGrowSize)
 		{
-			
+
 			OrderedArray<int> arr(2);
 			Assert::AreEqual(arr.capacity(), 0);
 			Assert::AreEqual(arr.getGrowSize(), 2);
@@ -172,12 +174,12 @@ namespace ADS2023RPTTEST
 			arr2.push(5.6f);
 			arr2.push(7.8f);
 			arr2.push(9.0f);
-			arr2.push(1.2f);		
+			arr2.push(1.2f);
 			arr2.push(2.3f);
 			arr2.push(3.4f);
 			arr2.push(5.6f);
 			arr2.push(7.8f);
-			Assert::AreEqual(arr2.capacity(),20);
+			Assert::AreEqual(arr2.capacity(), 20);
 			Assert::AreEqual(arr2.getGrowSize(), 10);
 
 		}
@@ -227,7 +229,7 @@ namespace ADS2023RPTTEST
 			arr.remove(0);
 			Assert::AreEqual(arr1.length(), 1);
 		}
-	
+
 		//test search 
 		TEST_METHOD(TestSearch)
 		{
@@ -238,14 +240,16 @@ namespace ADS2023RPTTEST
 			arr.push(4);
 			arr.push(1);
 
-			Assert::AreEqual(arr.search(2), 1);
+			Assert::AreEqual(arr.search(1), 0);
+			Assert::AreEqual(arr.search(2), 2);
 			Assert::AreEqual(arr.search(4), 3);
 			Assert::AreEqual(arr.search(6), 4);
-			Assert::AreEqual(arr.search(1), 0);
 			Assert::AreNotEqual(arr.search(0), 0);
 			Assert::AreEqual(arr.search(7), -1);
 			Assert::AreEqual(arr.search(3), -1);
 			
+			
+
 		}
 
 		//test clear function
@@ -287,12 +291,12 @@ namespace ADS2023RPTTEST
 			arr1.push(2.3);
 			arr1.push(4.5);
 			arr1.push(1.2);
-			
+
 			Assert::AreEqual(arr1.sumOfTwoElements(), 3.5);
 			Assert::AreNotEqual(arr1.sumOfTwoElements(), 4.5);
 			Assert::AreNotEqual(arr1.sumOfTwoElements(), 5.5);
 
-	
+
 		}
 
 		//test operator == function
@@ -340,9 +344,9 @@ namespace ADS2023RPTTEST
 			arrDoubles1.push(2.3);
 			arrDoubles1.push(4.5);
 			arrDoubles1.push(1.2);
-				
+
 			Assert::IsTrue(arrDoubles == arrDoubles1);
-			
+
 			//Different size Array of doubles
 			OrderedArray<double> arrDoubles2(1);
 			arrDoubles2.push(6.4);
@@ -351,7 +355,7 @@ namespace ADS2023RPTTEST
 			arrDoubles2.push(4.5);
 			arrDoubles2.push(1.2);
 			arrDoubles2.push(1.2);
-				
+
 			Assert::IsFalse(arrDoubles == arrDoubles2);
 		}
 
@@ -654,6 +658,40 @@ namespace ADS2023RPTTEST
 
 			Assert::IsFalse(arrDoubles >= arrDoubles2);
 		}
+	};
 
+	TEST_CLASS(MySetTest)
+	{
+		//test MySet class
+
+		//test push function for unique values
+		TEST_METHOD(TestPushUnique)
+		{
+			MySet<int> set(1);
+			set.push(1);
+			set.push(2);
+			set.push(3);
+			set.push(4);
+			set.push(5);
+
+			Assert::AreEqual(set.length(), 5);
+		}
+
+		//test push function for non-unique values
+		TEST_METHOD(TestPushNonUnique)
+		{
+			MySet<int> set(1);
+			set.push(1);
+			set.push(2);
+			set.push(3);
+			set.push(4);
+			set.push(5);
+			set.push(5);
+			set.push(5);
+			set.push(5);
+			set.push(5);
+
+			Assert::AreEqual(set.length(),5);
+		}
 	};
 }

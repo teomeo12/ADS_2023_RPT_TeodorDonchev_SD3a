@@ -66,7 +66,8 @@ OrderedArray<T>::~OrderedArray()
 	{
 		delete[] array;
 		array = nullptr;
-		cout<< "The array has been deleted" << endl;
+		cout<< "The array has been deleted!" << endl;
+		cout<<"OrderdArray destructor"<<endl;
 	}
 }
 
@@ -141,16 +142,16 @@ template<class T>
 int OrderedArray<T>::search(const T& searchKey) {
 	//linear search
 
-	for (int i = 0; i < lengthOfArr; i++) {
+	/*for (int i = 0; i < lengthOfArr; i++) {
 		if (array[i] == searchKey) {
 			return i;
 		}
 	}
-	return -1;
+	return -1;*/
 	//binary search
 	
-	/*int pStart = 0;
-	int pEnd = array[lengthOfArr - 1];
+	int pStart = 0;
+	int pEnd = lengthOfArr - 1;//array[lengthOfArr - 1];
 	int pMid = 0;
 	while (pStart <= pEnd) {
 		pMid = (pStart + pEnd) / 2;
@@ -164,7 +165,7 @@ int OrderedArray<T>::search(const T& searchKey) {
 			pStart = pMid + 1;
 		}
 	}
-	return -1;*/
+	return -1;
 
 }
 template<class T>
@@ -199,7 +200,7 @@ template<class T>
 void OrderedArray<T>::print()
 {
 	if(lengthOfArr==0)
-		cout<<"The array is Empty!: ";
+		cout<<"The Array is Empty!: ";
 	cout << "[";
 	for (int i = 0; i < lengthOfArr; i++)
 	{

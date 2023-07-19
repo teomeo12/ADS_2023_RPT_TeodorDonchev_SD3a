@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include "orderedArr.h"
+#include "MySet.h"
+#include<set>
 
 using namespace std;
 
@@ -19,6 +21,8 @@ void compareLessThanEqualArray();
 
 int main()
 {
+	//declare a set of integers from the standard library
+	set<int> setOfIntegers;
     try
     {
 		//Question 1
@@ -51,6 +55,62 @@ int main()
 
 		//Array1 is <= Array2
 		compareLessThanEqualArray();
+
+		//Question 2
+
+		//Declare a set with default constructor
+		cout<< "**********************************************************" << endl;
+		cout << "Initializing set of integers with default constructor" << endl;
+		cout << "**********************************************************" << endl;
+
+		MySet<int> set1;
+
+		set1.print();
+		set1.push(9);
+		set1.push(1);
+		set1.push(2);
+		set1.push(2);
+		set1.push(2);
+		set1.push(5);
+		
+
+		cout<<set1.capacity();
+		cout << endl;
+		cout << "The set size is: " << set1.length() << endl;
+		cout << "The set capacity is: " << set1.capacity() << endl;
+		cout << "The set grow size is: " << set1.getGrowSize() << endl;
+		cout << "Printing the set: " << endl;
+		cout << endl;
+
+		set1.print();
+		cout << endl;
+		cout << "*===================================================*" << endl;
+
+		MySet<int> set2;
+		set2.push(9);
+		set2.push(1);
+		set2.push(2);
+		set2.push(2);
+		set2.push(2);
+		set2.push(4);
+		set2.push(7);
+		set2.push(8);
+		set2.push(0);
+		set2.push(3);
+		set2.push(10);
+
+		set2.print();
+		cout << endl;
+
+		MySet<int> unionSet = set1 | set2;
+		//auto unionSet = set1 || set2;
+		unionSet.print();
+		cout << endl;
+
+		MySet<int> intersectionSet = set1 & set2;
+		intersectionSet.print();
+		cout << endl;
+
     }
     catch (invalid_argument e)
     {
@@ -129,7 +189,7 @@ void arrayWithDefaultConstructor() {
 	cout << endl;
 
 	cout << "please enter a value " << endl;
-	int elementValueInt;
+	//int elementValueInt;
 	//condition if the user enters a value that is not an integer
 	/*while (!(cin >> elementValueInt)) {
 		cin.clear();
