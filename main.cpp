@@ -18,6 +18,9 @@ void compareGreatThanArray();
 void compareLessThanArray();
 void compareGreatThanEqualArray();
 void compareLessThanEqualArray();
+void declareSetsDefaultConstructor();
+void declareSetsOfIntegersDefaultConstructor();
+void declareSetsOfDoublesCustomConstructor();
 
 int main()
 {
@@ -58,58 +61,14 @@ int main()
 
 		//Question 2
 
-		//Declare a set with default constructor
-		cout<< "**********************************************************" << endl;
-		cout << "Initializing set of integers with default constructor" << endl;
-		cout << "**********************************************************" << endl;
+		//Declare a set of integers with defaul constructor 
+		declareSetsOfIntegersDefaultConstructor();
 
-		MySet<int> set1;
-
-		set1.print();
-		set1.push(9);
-		set1.push(1);
-		set1.push(2);
-		set1.push(2);
-		set1.push(2);
-		set1.push(5);
+		//Declare a set of doubles with custom constructor
+		declareSetsOfDoublesCustomConstructor();
 		
-
-		cout<<set1.capacity();
-		cout << endl;
-		cout << "The set size is: " << set1.length() << endl;
-		cout << "The set capacity is: " << set1.capacity() << endl;
-		cout << "The set grow size is: " << set1.getGrowSize() << endl;
-		cout << "Printing the set: " << endl;
-		cout << endl;
-
-		set1.print();
-		cout << endl;
-		cout << "*===================================================*" << endl;
-
-		MySet<int> set2;
-		set2.push(9);
-		set2.push(1);
-		set2.push(2);
-		set2.push(2);
-		set2.push(2);
-		set2.push(4);
-		set2.push(7);
-		set2.push(8);
-		set2.push(0);
-		set2.push(3);
-		set2.push(10);
-
-		set2.print();
-		cout << endl;
-
-		MySet<int> unionSet = set1 | set2;
-		//auto unionSet = set1 || set2;
-		unionSet.print();
-		cout << endl;
-
-		MySet<int> intersectionSet = set1 & set2;
-		intersectionSet.print();
-		cout << endl;
+		
+		
 
     }
     catch (invalid_argument e)
@@ -432,11 +391,15 @@ void compareEqualArrays() {
 	arr1.push(3.4f);
 	arr1.push(1.3f);
 	arr1.push(24.1f);
+	cout << "Array 1:";
+	arr1.print();
 
 	OrderedArray<float> arr2(1);
 	arr2.push(3.4f);
 	arr2.push(1.3f);
 	arr2.push(24.1f);
+	cout << "Array 2:";
+	arr1.print();
 
 	if (arr1 == arr2)
 		cout << "\narr1 and arr2 are equal\n" << endl;
@@ -453,11 +416,15 @@ void compareNotEqualArrays() {
 	arr1.push(3.4f);
 	arr1.push(1.3f);
 	arr1.push(24.1f);
+	cout << "Array 1:";
+	arr1.print();
 
 	OrderedArray<float> arr2(1);
 	arr2.push(3.4f);
 	arr2.push(1.3f);
 	arr2.push(24.2f);
+	cout << "Array 2:";
+	arr2.print();
 
 	if (arr1 != arr2)
 		cout << "\narr1 and arr2 are not equal\n" << endl;
@@ -476,11 +443,15 @@ void compareGreatThanArray() {
 	arr1.push(3.4);
 	arr1.push(1.3);
 	arr1.push(24.1);
+	cout<< "Array 1:";
+	arr1.print();
 
 	OrderedArray<double> arr2(1);
 	arr2.push(3.4);
 	arr2.push(1.3);
 	arr2.push(24.2);
+	cout << "Array 2:";
+	arr2.print();
 
 	if (arr1 > arr2)
 		cout << "\narr1 is greater than arr2\n" << endl;
@@ -498,19 +469,47 @@ void compareLessThanArray() {
 	arr1.push(3);
 	arr1.push(1);
 	arr1.push(24);
-	arr1.push(99);
+	arr1.push(98);
+	cout<< "Array 1:";
+	arr1.print();
 	
 	OrderedArray<int> arr2(1);
 	arr2.push(3);
 	arr2.push(1);
 	arr2.push(24);
-	arr2.push(98);
-	
+	arr2.push(99);
+	cout << "Array 2:";
+	arr2.print();
 
 	if (arr1 < arr2)
 		cout << "\narr1 is less than arr2\n" << endl;
 	else
 		cout << "\narr1 is not less than arr2\n" << endl;
+
+	cout << "Comparising arrays with different size" << endl;
+
+	OrderedArray<int> arrSize4(1);
+	arrSize4.push(3);
+	arrSize4.push(1);
+	arrSize4.push(24);
+	arrSize4.push(99);
+	cout << "Array size: 4 elements:";
+	arrSize4.print();
+
+	OrderedArray<int> arrSize5(1);
+	arrSize5.push(3);
+	arrSize5.push(1);
+	arrSize5.push(24);
+	arrSize5.push(99);
+	arrSize5.push(0);
+	cout << "Array size: 5 elements:";
+	arrSize5.print();
+
+	if (arrSize4 < arrSize5)
+		cout << "\narrSize4 is less than arrSize5\n" << endl;
+	else
+		cout << "\arrSize4 is not less than arrSize5\n" << endl;
+
 }
 
 void compareGreatThanEqualArray() {
@@ -524,6 +523,8 @@ void compareGreatThanEqualArray() {
 	arr1.push(1);
 	arr1.push(24);
 	arr1.push(9);
+	cout<<"Array 1:";
+	arr1.print();
 
 	OrderedArray<int> arr2(1);
 	arr2.push(3);
@@ -531,6 +532,8 @@ void compareGreatThanEqualArray() {
 	arr2.push(24);
 	arr2.push(9);
 	arr2.push(2);
+	cout << "Array 2:";
+	arr2.print();
 	//arr2.push(999);
 	bool isEqual = arr1 >= arr2;
 
@@ -551,6 +554,8 @@ void compareLessThanEqualArray() {
 	arr1.push(1);
 	arr1.push(24);
 	arr1.push(9);
+	cout << "Array 1:";
+	arr1.print();
 
 	OrderedArray<int> arr2(1);
 	arr2.push(3);
@@ -558,6 +563,8 @@ void compareLessThanEqualArray() {
 	arr2.push(24);
 	arr2.push(9);
 	arr2.push(2);
+	cout << "Array 2:";
+	arr2.print();
 	
 	bool isEqual = arr1 <= arr2;
 
@@ -565,4 +572,159 @@ void compareLessThanEqualArray() {
 		cout << "\narr1 is less than or equal to arr2\n" << endl;
 	else
 		cout << "\narr1 is not less than or equal to arr2\n" << endl;
+}
+
+void declareSetsOfIntegersDefaultConstructor() {
+	cout << "**********************************************************" << endl;
+	cout << "Initializing set of integers with default constructor" << endl;
+	cout << "**********************************************************" << endl;
+	cout << "Set 1:" << endl;
+	MySet<int> set1;
+	set1.print();
+
+	cout<<"Pushing integers 9, 1, 2, 2, 2, 5 to the set: "<<endl;
+
+	set1.push(9);
+	set1.push(1);
+	set1.push(2);
+	set1.push(2);
+	set1.push(2);
+	set1.push(5);
+	set1.push(11);
+
+	cout << endl;
+	cout << "The set size is: " << set1.length() << endl;
+	cout << "The set capacity is: " << set1.capacity() << endl;
+	cout << "The set grow size is: " << set1.getGrowSize() << endl;
+	cout << "Printing the set: " << endl;
+	cout << endl;
+
+	set1.print();
+	cout << endl;
+	cout << "*===================================================*" << endl;
+	cout << endl;
+
+	cout << "Set 2:" << endl;
+
+	MySet<int> set2;
+
+	cout<<"Pushing integers 9, 1, 2, 2, 2, 4, 7, 8, 0, 3, 10 to the set: "<<endl;
+
+	set2.push(9);
+	set2.push(1);
+	set2.push(2);
+	set2.push(2);
+	set2.push(2);
+	set2.push(4);
+	set2.push(7);
+	set2.push(8);
+	set2.push(0);
+	set2.push(3);
+	set2.push(10);
+
+	cout << endl;
+	cout << "The set size is: " << set2.length() << endl;
+	cout << "The set capacity is: " << set2.capacity() << endl;
+	cout << "The set grow size is: " << set2.getGrowSize() << endl;
+	cout << "Printing the set: " << endl;
+	cout << endl;
+	
+	set2.print();
+	cout << endl;
+
+	cout << "***********************************************" << endl;
+	cout << "Union and Intersection of two sets of integers " << endl;
+	cout << "***********************************************" << endl;
+
+	cout<<"Union of set1 and set2: "<<endl;
+
+	MySet<int> unionSet = set1 | set2;
+	//auto unionSet = set1 || set2;
+	unionSet.print();
+	cout << endl;
+
+	cout<<"Intersection of set1 and set2: "<<endl;
+
+	MySet<int> intersectionSet = set1 & set2;
+	intersectionSet.print();
+	cout << endl;
+}
+
+void declareSetsOfDoublesCustomConstructor() {
+	cout << "**********************************************************" << endl;
+	cout << "Initializing set of doubles with custom constructor" << endl;
+	cout << "**********************************************************" << endl;
+	
+	MySet<double> set1(5);
+	cout << "Set 1 with grow size of: " <<set1.getGrowSize()<<" elements"<< endl;
+	set1.print();
+
+	cout<<"Pushing doubles 9.1,1.2,2.3,2.4,2.3,2.3,5.6 to the set: "<<endl;
+
+	set1.push(9.1);
+	set1.push(1.2);
+	set1.push(2.3);
+	set1.push(2.4);
+	set1.push(2.3);
+	set1.push(2.3);
+	set1.push(5.6);
+	set1.push(11.7);
+	cout << endl;
+	cout << "The set size is: " << set1.length() << endl;
+	cout << "The set capacity is: " << set1.capacity() << endl;
+	cout << "The set grow size is: " << set1.getGrowSize() << endl;
+	cout << "Printing the set: " << endl;
+	cout << endl;
+
+	set1.print();
+	cout << endl;
+	cout << "*===================================================*" << endl;
+	cout << endl;
+
+	MySet<double> set2(10);
+
+	cout<<"Set 2 with grow size of: "<<set2.getGrowSize()<<" elements"<<endl;
+	set2.print();
+
+	cout<<"Pushing doubles 9.1, 1.2, 2.3, 2.4, 2.3, 2.3, 5.6, 7.8, 0.9, 3.4, 10.5 to the set: "<<endl;
+
+	set2.push(9.1);
+	set2.push(1.2);
+	set2.push(2.3);
+	set2.push(2.4);
+	set2.push(2.3);
+	set2.push(2.3);
+	set2.push(5.6);
+	set2.push(7.8);
+	set2.push(0.9);
+	set2.push(3.4);
+	set2.push(10.5);
+
+	cout << endl;
+	cout << "The set size is: " << set2.length() << endl;
+	cout << "The set capacity is: " << set2.capacity() << endl;
+	cout << "The set grow size is: " << set2.getGrowSize() << endl;
+	cout << "Printing the set: " << endl;
+	cout << endl;
+		
+	set2.print();
+	cout << endl;
+
+	cout << "***********************************************" << endl;
+	cout << "Union and Intersection of two sets of integers " << endl;
+	cout << "***********************************************" << endl;
+
+	cout<<"Union of set1 and set2: "<<endl;
+
+	MySet<double> unionSet = set1 | set2;
+	unionSet.print();
+	cout << endl;
+
+	cout<<"Intersection of set1 and set2: "<<endl;
+
+	MySet<double> intersectionSet = set1 & set2;
+	intersectionSet.print();
+	cout << endl;
+
+
 }
