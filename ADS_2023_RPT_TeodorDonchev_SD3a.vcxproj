@@ -130,6 +130,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="lead.h" />
     <ClInclude Include="myset.h" />
     <ClInclude Include="orderedArr.h" />
   </ItemGroup>

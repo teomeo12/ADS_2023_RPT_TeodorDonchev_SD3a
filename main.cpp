@@ -4,7 +4,11 @@
 #include <iostream>
 #include "orderedArr.h"
 #include "MySet.h"
+#include "lead.h"
 #include<set>
+#include <fstream>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -12,6 +16,7 @@ void arrayWithDefaultConstructor();
 void orderedArrayWithCustomConstructor();
 void orderedArrayOfDoublesCustomConstructor();
 void orderedArrayOfFloatsCustomConstructor();
+void orderedArrayOfLongsCustomConstructor();
 void compareEqualArrays();
 void compareNotEqualArrays();
 void compareGreatThanArray();
@@ -21,6 +26,11 @@ void compareLessThanEqualArray();
 void declareSetsDefaultConstructor();
 void declareSetsOfIntegersDefaultConstructor();
 void declareSetsOfDoublesCustomConstructor();
+
+void leads();
+void readLeadsFromCSVFile();
+//void readLeadsFromCSVFile();
+string returnPhoneNumber(string str);
 
 int main()
 {
@@ -40,6 +50,9 @@ int main()
 	
 		//Array of floats with custom constructor
 		orderedArrayOfFloatsCustomConstructor();
+
+		//Array of longs with custom constructor
+		orderedArrayOfLongsCustomConstructor();
 
 		//Two equal arrays
 		compareEqualArrays();
@@ -67,8 +80,9 @@ int main()
 		//Declare a set of doubles with custom constructor
 		declareSetsOfDoublesCustomConstructor();
 		
-		
-		
+		//Question 3
+		//read a leads from csv file
+		leads();
 
     }
     catch (invalid_argument e)
@@ -380,6 +394,50 @@ void orderedArrayOfFloatsCustomConstructor() {
 	cout << "End of Array of floats with custom constructor" << endl;
 	cout << "**************************************************" << endl;
 	cout << endl;
+}
+
+void orderedArrayOfLongsCustomConstructor() {
+cout << "****************************************************" << endl;
+	cout << "Initializing array of longs with custom constructor" << endl;
+	cout << "****************************************************" << endl;
+
+	OrderedArray<long> arr3(5);
+	cout << endl;
+	cout << "The array size is: " << arr3.length() << endl;
+	cout << "The array capacity is: " << arr3.capacity() << endl;
+	cout << "The array grow size is: " << arr3.getGrowSize() << endl;
+	cout << "Printing the array: " << endl;
+	cout << endl;
+	arr3.print();
+	cout << endl;
+
+	cout << "*----------------------------------------------*" << endl;
+	cout << "Array of longs " << endl;
+	arr3.push(4356881007);
+	arr3.push(1234567890);
+	arr3.push(9876543210);
+	arr3.push(1234567890);
+	
+	
+
+	cout << endl;
+	cout << "Printing the array: " << endl;
+	cout << endl;
+
+	arr3.print();
+	cout << endl;
+
+	cout << "The array size is: " << arr3.length() << endl;
+	cout << "The array capacity is: " << arr3.capacity() << endl;
+	cout << "The array grow size is: " << arr3.getGrowSize() << endl;
+	cout << "Printing the array: " << endl;
+	cout << "The sum of the first two elements of the array is " << arr3.sumOfTwoElements() << endl;
+	cout << "The element at index 2 is: " << arr3.getElement(2) << endl;
+
+	cout << "\nRemove an element form the array" << endl;
+
+	arr3.remove(2);
+	arr3.print();
 }
 
 void compareEqualArrays() {
@@ -728,3 +786,53 @@ void declareSetsOfDoublesCustomConstructor() {
 
 
 }
+
+void leads() {
+	cout << "Reading john_leads.csv" << endl;
+
+	//string johnLeadsFile = "C:\\Users\\teomeo\\Desktop\\leads\\johns_leads_20.csv";
+	readLeadsFromCSVFile();
+}
+
+
+void readLeadsFromCSVFile() {
+   	//Read john_leads.csv 
+   	cout << "Reading john_leads.csv" << endl;
+   	ifstream inputfile;
+   	if (inputfile.fail()) {
+   		cout << "Error opening file" << endl;
+   		exit(1);
+   	}
+   
+   	inputfile.open("C:\\Users\\teomeo\\Desktop\\leads\\janes_leads_20.csv");
+   	string line = "";
+   	getline(inputfile, line);
+   	//line ="";
+   	while (getline(inputfile, line)) {
+   		string lead,phone;
+   		stringstream inputString(line);
+   
+   		getline(inputString, lead, '(');
+   		phone = returnPhoneNumber(line);
+   		cout << "L: " << lead << "P: " << phone << endl;
+ 
+   	}
+   
+   }
+
+string returnPhoneNumber(string str) {
+	
+	//trace string form behind and extract the numbers
+	string numericString = "";
+	int delimeter = str.find_last_of("(");
+	
+	string prefixAndNumber = str.substr(delimeter);
+	//cout <<"phone: "<< prefixAndNumber << endl;
+	numericString = prefixAndNumber.substr(1, 3) + prefixAndNumber.substr(5);
+	//cout << "prefixAndNumber: " << numericString << endl;
+	numericString.erase(3, 2);
+	//cout << numericString << endl;
+	return numericString;
+
+}
+
