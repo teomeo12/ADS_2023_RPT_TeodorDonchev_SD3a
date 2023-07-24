@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -23,14 +24,15 @@ void compareGreatThanArray();
 void compareLessThanArray();
 void compareGreatThanEqualArray();
 void compareLessThanEqualArray();
-void declareSetsDefaultConstructor();
 void declareSetsOfIntegersDefaultConstructor();
 void declareSetsOfDoublesCustomConstructor();
 
 void leads();
 void readLeadsFromCSVFile();
-//void readLeadsFromCSVFile();
 string returnPhoneNumber(string str);
+
+MySet<Lead> readLeadsFromCSV(string filename);
+
 
 int main()
 {
@@ -790,13 +792,17 @@ void declareSetsOfDoublesCustomConstructor() {
 void leads() {
 	cout << "Reading john_leads.csv" << endl;
 
-	//string johnLeadsFile = "C:\\Users\\teomeo\\Desktop\\leads\\johns_leads_20.csv";
-	readLeadsFromCSVFile();
+	string johnLeadsFile = "C:\\Users\\teomeo\\Desktop\\leads\\johns_leads_20.csv";
+	//readLeadsFromCSVFile();
+	MySet<Lead> johnLeads = readLeadsFromCSV(johnLeadsFile);
+	cout << "Printing john_leads.csv" << endl;
+	//johnLeads.print();
+	
 }
-
 
 void readLeadsFromCSVFile() {
    	//Read john_leads.csv 
+	cout << endl;
    	cout << "Reading john_leads.csv" << endl;
    	ifstream inputfile;
    	if (inputfile.fail()) {
@@ -804,21 +810,28 @@ void readLeadsFromCSVFile() {
    		exit(1);
    	}
    
-   	inputfile.open("C:\\Users\\teomeo\\Desktop\\leads\\janes_leads_20.csv");
+   	inputfile.open("C:\\Users\\teomeo\\Desktop\\leads\\johns_leads_250.csv");
    	string line = "";
    	getline(inputfile, line);
    	//line ="";
    	while (getline(inputfile, line)) {
-   		string lead,phone;
-   		stringstream inputString(line);
+   		string lead,phoneStr;
+		stringstream inputString(line);
+		size_t lastCommaPos = line.rfind(",");
+		lead = line.substr(0, lastCommaPos);
    
-   		getline(inputString, lead, '(');
-   		phone = returnPhoneNumber(line);
-   		cout << "L: " << lead << "P: " << phone << endl;
- 
+   		//getline(inputString, lead, '(');
+   		phoneStr = returnPhoneNumber(line);
+		long phoneNumber = stol(phoneStr);
+		/*Lead newLead(phoneNumber);
+		
+		MySet<Lead> leads(phoneNumber);
+		
+		leads.push(newLead);*/
+   		cout << "L: " << lead << " P: " << phoneNumber << endl;
    	}
    
-   }
+}
 
 string returnPhoneNumber(string str) {
 	
@@ -836,3 +849,28 @@ string returnPhoneNumber(string str) {
 
 }
 
+MySet<Lead> readLeadsFromCSV(string filename) {
+	MySet<Lead> leads;
+	ifstream inputfile;
+	if (inputfile.fail()) {
+		cout << "Error opening file" << endl;
+		exit(1);
+	}
+	inputfile.open(filename);
+	string line = "";
+	getline(inputfile, line);
+	line = "";
+	while (getline(inputfile, line)) {
+		string lead;
+		string phone;
+		stringstream inputString(line);
+
+		getline(inputString, lead, '(');
+		long phoneNumber = stol(phone = returnPhoneNumber(line));
+		Lead newLead(lead, phoneNumber);
+		//cout<<newLead.toString()<<endl;
+		leads.pushLead(newLead);
+	}
+	inputfile.close();
+	return leads;
+}

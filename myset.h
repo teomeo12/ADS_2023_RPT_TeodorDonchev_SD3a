@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include "orderedArr.h"
+#include "lead.h"
 
 using namespace std;
 
@@ -17,6 +18,18 @@ public:
 	void push(const T& newElement) {
 		if (OrderedArray<T>::search(newElement) < 0) {
 			OrderedArray<T>::push(newElement);
+		}
+	}
+	
+	// Comparison function to compare two Lead objects based on their phone numbers
+	static bool compareLeads(const Lead& lead1, const Lead& lead2) {
+		return lead1.phoneAsId < lead2.phoneAsId;
+	}
+	
+	//overide the push function to insert a lead into the set of leads 
+	void pushLead( Lead& newElement) {
+		if (OrderedArray<T>::search(newElement.getPhoneAsId(), compareLeads) < 0) {
+			OrderedArray<T>::push(newElement.getPhoneAsId());
 		}
 	}
 	//print the set

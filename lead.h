@@ -5,7 +5,7 @@
 using namespace std;
 
 
-class Lead {
+class Lead  {
 private:
 	string leadDetails;
 	long phoneAsId;
@@ -17,10 +17,10 @@ public:
 	Lead(string lead, long phoneAsId);
 	string getLeadDetails();
 	long getPhoneAsId();
-	/*void setLeadDetails(string leadDetails);
-	void setPhoneAsId(long phoneAsId);*/
 	string toString();
-
+	~Lead() {
+		cout << "Lead destructor" << endl;
+	}
 };
 
 string Lead::getLeadDetails() {
@@ -36,5 +36,5 @@ Lead::Lead(string lead, long phoneAsId) {
 	this->phoneAsId = phoneAsId;
 }
 string Lead::toString() {
-	return "Lead: " + leadDetails + " Phone: " + to_string(phoneAsId);
+	return "Lead: " +leadDetails +  " Phone: " + to_string(phoneAsId);
 }
