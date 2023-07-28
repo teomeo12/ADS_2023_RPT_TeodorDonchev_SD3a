@@ -5,11 +5,11 @@
 using namespace std;
 
 
-class Lead  {
-private:
+struct Lead  {
+//private:
 	string leadDetails;
 	long phoneAsId;
-public:
+//public:
 	Lead() {
 			leadDetails = "";
 			phoneAsId = 0;
@@ -19,7 +19,31 @@ public:
 	long getPhoneAsId();
 	string toString();
 	~Lead() {
-		cout << "Lead destructor" << endl;
+		//cout << "Lead destructor" << endl;
+	}
+	// Overload the < operator to compare leads based on phoneAsId
+	bool operator<(const Lead& other) const {
+		return phoneAsId < other.phoneAsId;
+	}
+	// Overload the > operator to compare leads based on phoneAsId
+	bool operator>(const Lead& other) const {
+		return phoneAsId > other.phoneAsId;
+	}
+	// Overload the == operator to compare leads based on phoneAsId
+	bool operator==(const Lead& other) const {
+		return phoneAsId == other.phoneAsId;
+	}
+	// Overload the != operator to compare leads based on phoneAsId
+	bool operator!=(const Lead& other) const {
+		return phoneAsId != other.phoneAsId;
+	}
+	// Overload the <= operator to compare leads based on phoneAsId
+	bool operator<=(const Lead& other) const {
+		return phoneAsId <= other.phoneAsId;
+	}
+	// Overload the >= operator to compare leads based on phoneAsId
+	bool operator>=(const Lead& other) const {
+		return phoneAsId >= other.phoneAsId;
 	}
 };
 
@@ -36,5 +60,6 @@ Lead::Lead(string lead, long phoneAsId) {
 	this->phoneAsId = phoneAsId;
 }
 string Lead::toString() {
-	return "Lead: " +leadDetails +  " Phone: " + to_string(phoneAsId);
+	//return  " ID: " + to_string(phoneAsId)+ " Lead: " + leadDetails;
+	return   "ID: "+to_string(phoneAsId) + " Lead: " + leadDetails;
 }

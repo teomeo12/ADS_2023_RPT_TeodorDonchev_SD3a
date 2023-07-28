@@ -5,11 +5,9 @@
 #include "orderedArr.h"
 #include "MySet.h"
 #include "lead.h"
-#include<set>
 #include <fstream>
-#include <sstream>
-#include <string>
-#include <vector>
+
+
 
 using namespace std;
 
@@ -26,18 +24,14 @@ void compareGreatThanEqualArray();
 void compareLessThanEqualArray();
 void declareSetsOfIntegersDefaultConstructor();
 void declareSetsOfDoublesCustomConstructor();
-
 void leads();
-void readLeadsFromCSVFile();
 string returnPhoneNumber(string str);
-
 MySet<Lead> readLeadsFromCSV(string filename);
+MySet<Lead> writeLeadsToCSV(MySet<Lead> leads, string filename);
 
 
 int main()
 {
-	//declare a set of integers from the standard library
-	set<int> setOfIntegers;
     try
     {
 		//Question 1
@@ -81,7 +75,7 @@ int main()
 
 		//Declare a set of doubles with custom constructor
 		declareSetsOfDoublesCustomConstructor();
-		
+
 		//Question 3
 		//read a leads from csv file
 		leads();
@@ -759,6 +753,8 @@ void declareSetsOfDoublesCustomConstructor() {
 	set2.push(0.9);
 	set2.push(3.4);
 	set2.push(10.5);
+	set2.push(11.7);
+	set2.push(12.7);
 
 	cout << endl;
 	cout << "The set size is: " << set2.length() << endl;
@@ -790,55 +786,102 @@ void declareSetsOfDoublesCustomConstructor() {
 }
 
 void leads() {
-	cout << "Reading john_leads.csv" << endl;
+	cout<<"**********************************************************"<<endl;
+	cout << "\nReading john_leads.csv...\n" << endl;
 
 	string johnLeadsFile = "C:\\Users\\teomeo\\Desktop\\leads\\johns_leads_20.csv";
-	//readLeadsFromCSVFile();
 	MySet<Lead> johnLeads = readLeadsFromCSV(johnLeadsFile);
-	cout << "Printing john_leads.csv" << endl;
-	//johnLeads.print();
-	
-}
+	cout << "Printing john_leads.csv: \n" << endl;
 
-void readLeadsFromCSVFile() {
-   	//Read john_leads.csv 
+	johnLeads.printLead();
 	cout << endl;
-   	cout << "Reading john_leads.csv" << endl;
-   	ifstream inputfile;
-   	if (inputfile.fail()) {
-   		cout << "Error opening file" << endl;
-   		exit(1);
-   	}
-   
-   	inputfile.open("C:\\Users\\teomeo\\Desktop\\leads\\johns_leads_250.csv");
-   	string line = "";
-   	getline(inputfile, line);
-   	//line ="";
-   	while (getline(inputfile, line)) {
-   		string lead,phoneStr;
+	cout<<"The John leads set size is: "<<johnLeads.length()<<endl;
+
+	cout << "**********************************************************" << endl;
+	cout << "\nReading janes_leads.csv...\n" << endl;
+	string janesLeadsFile = "C:\\Users\\teomeo\\Desktop\\leads\\janes_leads_20.csv";
+	MySet<Lead> janesLeads = readLeadsFromCSV(janesLeadsFile);
+	cout << "Printing janes_leads.csv: \n" << endl;
+
+	janesLeads.printLead();
+	cout << endl;
+	cout<<"The Jane leads set size is: "<<janesLeads.length()<<endl;
+	cout << endl;
+	cout << "***********************************************" << endl;
+	cout << "The common leads for John and Jane " << endl;
+	cout << "***********************************************" << endl;
+
+	MySet<Lead> commonSet = johnLeads | janesLeads;
+	commonSet.printLead();
+	cout << endl;
+	
+	cout << endl;
+
+	//write the common leads to a file
+	string commonLeadsFile = "C:\\Users\\teomeo\\Desktop\\leads\\common_leads.csv";
+	//MySet<Lead> commonLeads = writeLeadsToCSV(commonSet, commonLeadsFile);
+
+	ofstream outputfile;
+	outputfile.open(commonLeadsFile/*, ios_base::app*/);
+	outputfile << "ID" << "," << "Lead" << endl;
+	for (int i = 0; i < commonSet.length(); i++) {
+		outputfile << "ID " << commonSet.getElement(i).getPhoneAsId() << ", " << "Lead " << commonSet.getElement(i).getLeadDetails() << endl;
+	}
+	outputfile.close();
+	
+	cout<<"The common leads for John and Jane are: "<< commonSet.length()<<endl;
+	cout<< endl;
+	
+
+}
+//write the leads to the csv file
+//MySet<Lead> writeLeadsToCSV(MySet<Lead> commonSet, string commonLeadsFile) {
+//	ofstream outputfile;
+//	outputfile.open(commonLeadsFile/*, ios_base::app*/);
+//	outputfile << "ID" << "," << "Lead" << endl;
+//	for (int i = 0; i < commonSet.length(); i++) {
+//		outputfile << "ID " << commonSet.getElement(i).getPhoneAsId() << ", " << "Lead " << commonSet.getElement(i).getLeadDetails() << endl;
+//	}
+//	outputfile.close();
+//	return commonSet;
+//}
+
+//read the leads from the csv file
+MySet<Lead> readLeadsFromCSV(string filename) {
+	MySet<Lead> leads;
+	ifstream inputfile;
+	if (inputfile.fail()) {
+		cout << "Error opening file" << endl;
+		exit(1);
+	}
+	inputfile.open(filename);
+	string line = "";
+	while (getline(inputfile, line)) {
+		string lead;
+		string phoneStr;
 		stringstream inputString(line);
-		size_t lastCommaPos = line.rfind(",");
+		int lastCommaPos = line.rfind(",");
 		lead = line.substr(0, lastCommaPos);
-   
-   		//getline(inputString, lead, '(');
-   		phoneStr = returnPhoneNumber(line);
-		long phoneNumber = stol(phoneStr);
-		/*Lead newLead(phoneNumber);
-		
-		MySet<Lead> leads(phoneNumber);
-		
-		leads.push(newLead);*/
-   		cout << "L: " << lead << " P: " << phoneNumber << endl;
-   	}
-   
+
+		//getline(inputString, lead, '(');
+		//convert the string to long
+		long phoneNumber = stol(phoneStr = returnPhoneNumber(line));
+		Lead newLead(lead, phoneNumber);
+		//cout << newLead.toString() << endl;
+		leads.pushLead(newLead);
+		//cout << "L: " << lead << " P: " << phoneNumber << endl;
+	}
+
+	inputfile.close();
+	return leads;
 }
 
 string returnPhoneNumber(string str) {
-	
+
 	//trace string form behind and extract the numbers
 	string numericString = "";
 	int delimeter = str.find_last_of("(");
-	
+
 	string prefixAndNumber = str.substr(delimeter);
 	//cout <<"phone: "<< prefixAndNumber << endl;
 	numericString = prefixAndNumber.substr(1, 3) + prefixAndNumber.substr(5);
@@ -849,28 +892,5 @@ string returnPhoneNumber(string str) {
 
 }
 
-MySet<Lead> readLeadsFromCSV(string filename) {
-	MySet<Lead> leads;
-	ifstream inputfile;
-	if (inputfile.fail()) {
-		cout << "Error opening file" << endl;
-		exit(1);
-	}
-	inputfile.open(filename);
-	string line = "";
-	getline(inputfile, line);
-	line = "";
-	while (getline(inputfile, line)) {
-		string lead;
-		string phone;
-		stringstream inputString(line);
 
-		getline(inputString, lead, '(');
-		long phoneNumber = stol(phone = returnPhoneNumber(line));
-		Lead newLead(lead, phoneNumber);
-		//cout<<newLead.toString()<<endl;
-		leads.pushLead(newLead);
-	}
-	inputfile.close();
-	return leads;
-}
+
