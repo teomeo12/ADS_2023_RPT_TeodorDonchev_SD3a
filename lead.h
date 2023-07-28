@@ -6,10 +6,9 @@ using namespace std;
 
 
 struct Lead  {
-//private:
 	string leadDetails;
 	long phoneAsId;
-//public:
+
 	Lead() {
 			leadDetails = "";
 			phoneAsId = 0;
@@ -60,6 +59,5 @@ Lead::Lead(string lead, long phoneAsId) {
 	this->phoneAsId = phoneAsId;
 }
 string Lead::toString() {
-	//return  " ID: " + to_string(phoneAsId)+ " Lead: " + leadDetails;
 	return   "ID: "+to_string(phoneAsId) + " Lead: " + leadDetails;
 }

@@ -875,7 +875,7 @@ MySet<Lead> readLeadsFromCSV(string filename) {
 	inputfile.close();
 	return leads;
 }
-
+//return the phone number as a string
 string returnPhoneNumber(string str) {
 
 	//trace string form behind and extract the numbers
