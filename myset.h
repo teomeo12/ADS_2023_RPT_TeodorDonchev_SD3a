@@ -25,9 +25,9 @@ public:
 	}
 	
 	//overide the push function to insert a lead into the set of leads 
-	void pushLead(const Lead& newElement) {
+	/*void pushLead(const Lead& newElement) {
 		OrderedArray<T>::pushLead(newElement);
-	}
+	}*/
 	//print the set
 	void print();
 
@@ -50,8 +50,8 @@ public:
 	//operator & overloading
 	MySet<T> operator & (MySet<T>& other);
 
-	//oeprator | overloading for the set of leads
-	MySet<Lead> operator | (Lead& other);
+	//operator - overloading
+	MySet<T> operator - (MySet<T>& other);
 
 	//Destructor
 	~MySet() { 
@@ -93,32 +93,6 @@ void MySet<T>::printLead()
 }
 
 template<class T>
-MySet<Lead> MySet<T>:: operator | (Lead& other) {
-	MySet<Lead> temp;
-	//copy the elements of the first set to the temp set
-	for (int i = 0; i < OrderedArray<T>::length(); i++) {
-		temp.pushLead(OrderedArray<T>::getElement(i));
-	}
-	//copy the elements of the second set to the temp set
-	for (int i = 0; i < 20; i++) {
-		temp.pushLead(other);
-	}
-	return temp;
-}
-template<class T>
-MySet<T> operator-(const MySet<T>& otherSet) {
-	MySet<T> differenceSet(*this); // Use the copy constructor to create a copy
-
-	// Remove elements that also exist in the other set
-	for (int i = 0; i < otherSet.length(); i++) {
-		const T& element = otherSet.getElement(i);
-		differenceSet.remove(element);
-	}
-
-	return differenceSet;
-}
-
-template<class T>
 MySet<T> MySet<T>:: operator | ( MySet<T>& otherSet) {
 	MySet<T> temp;
 	//copy the elements of the first set to the temp set
@@ -137,25 +111,32 @@ template<class T>
 MySet<T> MySet<T>:: operator & (MySet<T>& otherSet) {
 	MySet<T> tempSet;
 	
-	for (int i = 0; i < length(); i++) {
-		const T& element = getElement(i);
-
-		//  if the element exists in the other set push it to the temp set
-		for (int j = 0; j < otherSet.length(); j++) {
-			if (element == otherSet.getElement(j)) {
-				tempSet.push(element);
-			}
-		
-		}
-	}
-
-	/*for (int i = 0; i < OrderedArray<T>::length(); i++) {
+	for (int i = 0; i < OrderedArray<T>::length(); i++) {
 		T element = OrderedArray<T>::getElement(i);
 		if (otherSet.search(element) >= 0) {
 			tempSet.push(element);
 		}
-	}*/
+	}
 
+	return tempSet;
+}
+template<class T>
+MySet<T> MySet<T>:: operator - (MySet<T>& otherSet) {
+	MySet<T> tempSet;
+	//copy the elements of the first set to the temp set
+	for (int i = 0; i < OrderedArray<T>::length(); i++) {
+		tempSet.push(OrderedArray<T>::getElement(i));
+	}
+	//removing the elements of the second set from the temp set
+	for (int i = 0; i < otherSet.length(); i++) {
+		T element = otherSet.getElement(i); //get the element of the second set
+		int index = tempSet.search(element); //search for the element in the temp set
+		while (index != -1) {
+			tempSet.remove(index);			 //remove the element from the temp set
+			index = tempSet.search(element); //search for the element in the temp set
+		}
+			
+	}
 	return tempSet;
 }
 
