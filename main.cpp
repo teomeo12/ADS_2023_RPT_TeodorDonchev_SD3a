@@ -103,9 +103,9 @@ int main()
 
 void arrayWithDefaultConstructor() {
 	//Declare an array with default constructor
-	cout << "**********************************************************" << endl;
-	cout << "Initializing array of integers with default constructor" << endl;
-	cout << "**********************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "  Initializing array of integers with default constructor  " << endl;
+	cout << "***********************************************************" << endl;
 
 	OrderedArray<int> array;
 	cout << endl;
@@ -117,7 +117,7 @@ void arrayWithDefaultConstructor() {
 
 	array.print();
 	cout << endl;
-	cout << "*===================================================*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << "Array of integers" << endl;
 	array.push(5);
 	array.push(2);
@@ -175,17 +175,17 @@ void arrayWithDefaultConstructor() {
 	//	cout << "The value " << elementValueInt << " is at index: " << array.search(elementValueInt) << endl;
 	//}
 
-	cout << "**************************************************" << endl;
-	cout << "End of default constructor" << endl;
-	cout << "**************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "              End of default constructor                   " << endl;
+	cout << "***********************************************************" << endl;
 	cout << endl;
 }
 
 void orderedArrayWithCustomConstructor() {
 	//Declare an array with custom constructor
-	cout << "**************************************************" << endl;
-	cout << "Initializing array of integers with custom constructor" << endl;
-	cout << "**************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "   Initializing array of integers with custom constructor  " << endl;
+	cout << "***********************************************************" << endl;
 
 	OrderedArray<int> arr(1);
 	cout << endl;
@@ -198,7 +198,7 @@ void orderedArrayWithCustomConstructor() {
 	arr.print();
 	cout << endl;
 
-	cout << "*----------------------------------------------*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << "Array of integers " << endl;
 	arr.push(6);
 	arr.push(2);
@@ -218,7 +218,7 @@ void orderedArrayWithCustomConstructor() {
 
 	arr.clear();
 	cout << "\nClear function is called: " << endl;
-	cout << "*----------------------------------------------*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << endl;
 	cout << "Printing the array: " << endl;
 	cout << endl;
@@ -231,7 +231,7 @@ void orderedArrayWithCustomConstructor() {
 	cout << "The array grow size is: " << arr.getGrowSize() << endl;
 
 	cout << endl;
-	cout << "*----------------------------------------------*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << "Adding 4 elements to the array" << endl;
 
 	arr.push(2);
@@ -248,17 +248,17 @@ void orderedArrayWithCustomConstructor() {
 	cout << "The element at index 3 is: " << arr.getElement(3) << endl;
 	cout << "The sum of the first two elements of the array is " << arr.sumOfTwoElements();
 	cout << endl;
-	cout << "**************************************************" << endl;
-	cout << "End of custom constructor" << endl;
-	cout << "**************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "                 End of custom constructor                 " << endl;
+	cout << "***********************************************************" << endl;
 	cout << endl;
 }
 
 void orderedArrayOfDoublesCustomConstructor(){
 
-	cout << "**************************************************" << endl;
-	cout << "Initializing array of doubles with custom constructor" << endl;
-	cout << "**************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "   Initializing array of doubles with custom constructor   " << endl;
+	cout << "***********************************************************" << endl;
 
 	OrderedArray<double> arr1(5);
 	cout << endl;
@@ -270,7 +270,7 @@ void orderedArrayOfDoublesCustomConstructor(){
 	arr1.print();
 	cout << endl;
 
-	cout << "*----------------------------------------------*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << "Array of doubles " << endl;
 	arr1.push(6.4);
 	arr1.push(2.3);
@@ -290,7 +290,7 @@ void orderedArrayOfDoublesCustomConstructor(){
 	cout << "The sum of the first two elements of the array is " << arr1.sumOfTwoElements() << endl;
 	cout << "The element at index 2 is: " << arr1.getElement(2) << endl;
 
-	cout << "*----------------------------------------------*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << "\nRemove two elements form the array" << endl;
 
 	arr1.remove(2);
@@ -303,7 +303,7 @@ void orderedArrayOfDoublesCustomConstructor(){
 	cout << endl;
 	arr1.print();
 	cout << endl;
-	cout << "*----------------------------------------------*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << "Adding 4 elements to the array" << endl;
 
 	arr1.push(34.5);
@@ -323,16 +323,16 @@ void orderedArrayOfDoublesCustomConstructor(){
 		cout << e.what() << endl;
 	}
 
-	cout << "**************************************************" << endl;
-	cout << "End of Array of doubles with custom constructor" << endl;
-	cout << "**************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "      End of Array of doubles with custom constructor      " << endl;
+	cout << "***********************************************************" << endl;
 	cout << endl;
 }
 
 void orderedArrayOfFloatsCustomConstructor() {
-	cout << "****************************************************" << endl;
-	cout << "Initializing array of floats with custom constructor" << endl;
-	cout << "****************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "    Initializing array of floats with custom constructor   " << endl;
+	cout << "***********************************************************" << endl;
 
 	OrderedArray<float> arr2(5);
 	cout << endl;
@@ -344,7 +344,7 @@ void orderedArrayOfFloatsCustomConstructor() {
 	arr2.print();
 	cout << endl;
 
-	cout << "*----------------------------------------------*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << "Array of floats " << endl;
 	arr2.push(3.4f);
 	arr2.push(1.3f);
@@ -371,7 +371,7 @@ void orderedArrayOfFloatsCustomConstructor() {
 	arr2.print();
 
 
-	cout << "*----------------------------------------------*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << "\nSearch an element in the array" << endl;
 
 	cout << "please enter a value " << endl;
@@ -386,16 +386,16 @@ void orderedArrayOfFloatsCustomConstructor() {
 		cout << "The value " << elementValueFloat << " is at possition: " << arr2.search(elementValueFloat) << endl;
 	}*/
 
-	cout << "**************************************************" << endl;
-	cout << "End of Array of floats with custom constructor" << endl;
-	cout << "**************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "       End of Array of floats with custom constructor      " << endl;
+	cout << "***********************************************************" << endl;
 	cout << endl;
 }
 
 void orderedArrayOfLongsCustomConstructor() {
-cout << "****************************************************" << endl;
-	cout << "Initializing array of longs with custom constructor" << endl;
-	cout << "****************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "    Initializing array of longs with custom constructor    " << endl;
+	cout << "***********************************************************" << endl;
 
 	OrderedArray<long> arr3(5);
 	cout << endl;
@@ -407,7 +407,7 @@ cout << "****************************************************" << endl;
 	arr3.print();
 	cout << endl;
 
-	cout << "*----------------------------------------------*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << "Array of longs " << endl;
 	arr3.push(4356881007);
 	arr3.push(1234567890);
@@ -437,9 +437,9 @@ cout << "****************************************************" << endl;
 }
 
 void compareEqualArrays() {
-	cout << "****************************************************" << endl;
-	cout << "Comparising equal arrays" << endl;
-	cout << "****************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "                  Comparising equal arrays                 " << endl;
+	cout << "***********************************************************" << endl;
 
 	OrderedArray<float> arr1(1);
 	arr1.push(3.4f);
@@ -462,9 +462,9 @@ void compareEqualArrays() {
 }
 
 void compareNotEqualArrays() {
-	cout << "****************************************************" << endl;
-	cout << "Comparising Not equal arrays" << endl;
-	cout << "****************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "                Comparising Not equal arrays               " << endl;
+	cout << "***********************************************************" << endl;
 
 	OrderedArray<float> arr1(1);
 	arr1.push(3.4f);
@@ -489,9 +489,9 @@ void compareNotEqualArrays() {
 
 void compareGreatThanArray() {
 
-	cout << "****************************************************" << endl;
-	cout << "Comparising greater than arrays" << endl;
-	cout << "****************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "              Comparising greater than arrays              " << endl;
+	cout << "***********************************************************" << endl;
 
 	OrderedArray<double> arr1(1);
 	arr1.push(3.4);
@@ -515,9 +515,9 @@ void compareGreatThanArray() {
 
 void compareLessThanArray() {
 
-	cout << "****************************************************" << endl;
-	cout << "Comparising less than arrays" << endl;
-	cout << "****************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "                Comparising less than arrays               " << endl;
+	cout << "***********************************************************" << endl;
 
 	OrderedArray<int> arr1(1);
 	arr1.push(3);
@@ -568,9 +568,9 @@ void compareLessThanArray() {
 
 void compareGreatThanEqualArray() {
 
-	cout << "****************************************************" << endl;
-	cout << "Comparising greater than or equal arrays" << endl;
-	cout << "****************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "          Comparising greater than or equal arrays          " << endl;
+	cout << "***********************************************************" << endl;
 
 	OrderedArray<int> arr1(1);
 	arr1.push(3);
@@ -599,9 +599,9 @@ void compareGreatThanEqualArray() {
 
 void compareLessThanEqualArray() {
 
-	cout << "****************************************************" << endl;
-	cout << "Comparising less than or equal arrays" << endl;
-	cout << "****************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "           Comparising less than or equal arrays           " << endl;
+	cout << "***********************************************************" << endl;
 
 	OrderedArray<int> arr1(1);
 	arr1.push(3);
@@ -629,9 +629,9 @@ void compareLessThanEqualArray() {
 }
 
 void declareSetsOfIntegersDefaultConstructor() {
-	cout << "**********************************************************" << endl;
-	cout << "Initializing set of integers with default constructor" << endl;
-	cout << "**********************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "   Initializing set of integers with default constructor   " << endl;
+	cout << "***********************************************************" << endl;
 	cout << "Set 1:" << endl;
 	MySet<int> set1;
 	set1.print();
@@ -655,7 +655,7 @@ void declareSetsOfIntegersDefaultConstructor() {
 
 	set1.print();
 	cout << endl;
-	cout << "*===================================================*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << endl;
 
 	cout << "Set 2:" << endl;
@@ -686,9 +686,9 @@ void declareSetsOfIntegersDefaultConstructor() {
 	set2.print();
 	cout << endl;
 
-	cout << "***********************************************" << endl;
-	cout << "Union and Intersection of two sets of integers " << endl;
-	cout << "***********************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "      Union and Intersection of two sets of integers       " << endl;
+	cout << "***********************************************************" << endl;
 
 	cout<<"Union of set1 and set2: "<<endl;
 
@@ -715,9 +715,9 @@ void declareSetsOfIntegersDefaultConstructor() {
 }
 
 void declareSetsOfDoublesCustomConstructor() {
-	cout << "**********************************************************" << endl;
-	cout << "Initializing set of doubles with custom constructor" << endl;
-	cout << "**********************************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "    Initializing set of doubles with custom constructor    " << endl;
+	cout << "***********************************************************" << endl;
 	
 	MySet<double> set1(5);
 	cout << "Set 1 with grow size of: " <<set1.getGrowSize()<<" elements"<< endl;
@@ -742,7 +742,7 @@ void declareSetsOfDoublesCustomConstructor() {
 
 	set1.print();
 	cout << endl;
-	cout << "*===================================================*" << endl;
+	cout << "*=========================================================*" << endl;
 	cout << endl;
 
 	MySet<double> set2(10);
@@ -776,9 +776,9 @@ void declareSetsOfDoublesCustomConstructor() {
 	set2.print();
 	cout << endl;
 
-	cout << "***********************************************" << endl;
-	cout << "Union and Intersection of two sets of integers " << endl;
-	cout << "***********************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "      Union and Intersection of two sets of integers       " << endl;
+	cout << "***********************************************************" << endl;
 
 	cout<<"Union of set1 and set2: "<<endl;
 
@@ -796,10 +796,10 @@ void declareSetsOfDoublesCustomConstructor() {
 }
 
 void leads() {
-	cout<<"**********************************************************"<<endl;
+	cout<<"***********************************************************"<<endl;
 	cout << "\nReading john_leads.csv...\n" << endl;
 
-	string johnLeadsFile = "C:\\johns_leads_20.csv";
+	string johnLeadsFile = "C:\\leads\\johns_leads_20.csv";
 	MySet<Lead> johnLeads = readLeadsFromCSV(johnLeadsFile);
 	cout << "Printing john_leads.csv: \n" << endl;
 
@@ -807,9 +807,9 @@ void leads() {
 	cout << endl;
 	cout<<"The John leads set size is: "<<johnLeads.length()<<endl;
 
-	cout << "**********************************************************" << endl;
+	cout << "***********************************************************" << endl;
 	cout << "\nReading janes_leads.csv...\n" << endl;
-	string janesLeadsFile = "C:\\janes_leads_20.csv";
+	string janesLeadsFile = "C:\\leads\\janes_leads_20.csv";
 	MySet<Lead> janesLeads = readLeadsFromCSV(janesLeadsFile);
 	cout << "Printing janes_leads.csv: \n" << endl;
 
@@ -819,9 +819,9 @@ void leads() {
 	cout << endl;
 
 	//common leqads for john and jane
-	cout << "***********************************************" << endl;
-	cout << "The common leads for John and Jane " << endl;
-	cout << "***********************************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "            The common leads for John and Jane             " << endl;
+	cout << "***********************************************************" << endl;
 
 	MySet<Lead> commonSet = johnLeads | janesLeads;
 	commonSet.printLead();
@@ -833,10 +833,20 @@ void leads() {
 	writeLeadsToCSV(commonSet, commonLeadsFile);
 	cout<< endl;
 
+	//duplicate leads for john and jane
+	cout << "***********************************************************" << endl;
+	cout << "            The duplicate leads for John and Jane          " << endl;
+	cout << "***********************************************************" << endl;
+
+	MySet<Lead> duplicateSet = johnLeads & janesLeads;
+	duplicateSet.printLead();
+	cout << "\nThe duplicate leads for John and Jane are: " << duplicateSet.length() << endl;
+	cout << endl;
+
 	//unique leads for John
-	cout << "**************************" << endl;
-	cout << "The unique leads for John  " << endl;
-	cout << "**************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "                 The unique leads for John                 " << endl;
+	cout << "***********************************************************" << endl;
 
 	MySet<Lead> uniqueJohn = johnLeads - janesLeads;
 	uniqueJohn.printLead();
@@ -847,9 +857,9 @@ void leads() {
 	writeLeadsToCSV(uniqueJohn, uniqueJohnLeadsFile);
 	cout << endl;
 
-	cout << "**************************" << endl;
-	cout << "The unique leads for Jane  " << endl;
-	cout << "**************************" << endl;
+	cout << "***********************************************************" << endl;
+	cout << "                 The unique leads for Jane                 " << endl;
+	cout << "***********************************************************" << endl;
 
 	MySet<Lead> uniqueJane = janesLeads - johnLeads;
 	uniqueJane.printLead();
@@ -860,6 +870,17 @@ void leads() {
 	writeLeadsToCSV(uniqueJane, uniqueJaneLeadsFile);
 	cout << endl;
 
+	//statistics
+	cout << "***********************************************************" << endl;
+	cout << "                      Leads statistics                     " << endl;
+	cout << "***********************************************************" << endl;
+
+	cout << "The total leads for John are: " << johnLeads.length() << endl;
+	cout << "The total leads for Jane are: " << janesLeads.length() << endl;
+	cout << "John unique leads: " << uniqueJohn.length() << endl;
+	cout << "Jane unique leads: " << uniqueJane.length() << endl;
+	cout << "The duplicate leads for John and Jane are: " << duplicateSet.length() << endl;
+	cout << endl;
 }
 //write the leads to the csv file
 void writeLeadsToCSV(MySet<Lead>& leadSet, string& commonLeadsFile) {
