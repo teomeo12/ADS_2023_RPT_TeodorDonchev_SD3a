@@ -828,7 +828,7 @@ void leads() {
 	cout << endl;
 
 	//write the common leads to a file
-	string commonLeadsFile = "C:\\common_leads.csv";
+	string commonLeadsFile = "C:\\leads\\common_leads.csv";
 	//MySet<Lead> commonLeads = writeLeadsToCSV(commonSet, commonLeadsFile);
 
 	ofstream outputfile;
@@ -894,7 +894,7 @@ MySet<Lead> readLeadsFromCSV(string filename) {
 		long phoneNumber = stol(phoneStr = returnPhoneNumber(line));
 		Lead newLead(lead, phoneNumber);
 		//cout << newLead.toString() << endl;
-		leads.pushLead(newLead);
+		leads.push(newLead);
 		//cout << "L: " << lead << " P: " << phoneNumber << endl;
 	}
 
