@@ -702,6 +702,16 @@ void declareSetsOfIntegersDefaultConstructor() {
 	MySet<int> intersectionSet = set1 & set2;
 	intersectionSet.print();
 	cout << endl;
+
+	cout << "Unique elements of set1: " << endl;
+	MySet<int> uniqueSet1 = set1 - set2;
+	uniqueSet1.print();
+	cout << endl;
+
+	cout << "Unique elements of set2: " << endl;
+	MySet<int> uniqueSet2 = set2 - set1;
+	uniqueSet2.print();
+	cout << endl;
 }
 
 void declareSetsOfDoublesCustomConstructor() {
@@ -789,7 +799,7 @@ void leads() {
 	cout<<"**********************************************************"<<endl;
 	cout << "\nReading john_leads.csv...\n" << endl;
 
-	string johnLeadsFile = "C:\\Users\\teomeo\\Desktop\\leads\\johns_leads_20.csv";
+	string johnLeadsFile = "C:\\johns_leads_20.csv";
 	MySet<Lead> johnLeads = readLeadsFromCSV(johnLeadsFile);
 	cout << "Printing john_leads.csv: \n" << endl;
 
@@ -799,7 +809,7 @@ void leads() {
 
 	cout << "**********************************************************" << endl;
 	cout << "\nReading janes_leads.csv...\n" << endl;
-	string janesLeadsFile = "C:\\Users\\teomeo\\Desktop\\leads\\janes_leads_20.csv";
+	string janesLeadsFile = "C:\\janes_leads_20.csv";
 	MySet<Lead> janesLeads = readLeadsFromCSV(janesLeadsFile);
 	cout << "Printing janes_leads.csv: \n" << endl;
 
@@ -818,12 +828,12 @@ void leads() {
 	cout << endl;
 
 	//write the common leads to a file
-	string commonLeadsFile = "C:\\Users\\teomeo\\Desktop\\leads\\common_leads.csv";
+	string commonLeadsFile = "C:\\common_leads.csv";
 	//MySet<Lead> commonLeads = writeLeadsToCSV(commonSet, commonLeadsFile);
 
 	ofstream outputfile;
 	outputfile.open(commonLeadsFile/*, ios_base::app*/);
-	outputfile << "ID" << "," << "Lead" << endl;
+	//outputfile << "ID" << "," << "Lead" << endl;
 	for (int i = 0; i < commonSet.length(); i++) {
 		outputfile << "ID " << commonSet.getElement(i).getPhoneAsId() << ", " << "Lead " << commonSet.getElement(i).getLeadDetails() << endl;
 	}
@@ -831,7 +841,23 @@ void leads() {
 	
 	cout<<"The common leads for John and Jane are: "<< commonSet.length()<<endl;
 	cout<< endl;
-	
+	cout << "**************************" << endl;
+	cout << "The unique leads for John  " << endl;
+	cout << "**************************" << endl;
+
+	MySet<Lead> uniqueJohn = johnLeads - janesLeads;
+	uniqueJohn.printLead();
+	cout << "\nThe unique leads for John are: " << uniqueJohn.length() << endl;
+	cout << endl;
+
+	cout << "**************************" << endl;
+	cout << "The unique leads for Jane  " << endl;
+	cout << "**************************" << endl;
+
+	MySet<Lead> uniqueJane = janesLeads - johnLeads;
+	uniqueJane.printLead();
+	cout << "\nThe unique leads for Jane are: " << uniqueJane.length() << endl;
+	cout << endl;
 
 }
 //write the leads to the csv file
