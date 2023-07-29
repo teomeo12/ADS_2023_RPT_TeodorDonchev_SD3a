@@ -19,7 +19,6 @@ public:
 	OrderedArray();						  //default constructor
 	OrderedArray(int growSize); //constructor with custom growSize
 	void push(const T& newElement);       //insert an element in to an array 
-	void pushLead(const Lead& newElement);    //insert a lead into the set of leads
 	int length();						  //return the length of the array	
 	int capacity();						  //return the capacity of the array
 	int getGrowSize();					  //return the grow size of the array	
@@ -35,7 +34,6 @@ public:
 	bool operator<(const OrderedArray<T>& other);  // function for the overloaded "<" operator
 	bool operator>=(const OrderedArray<T>& other); // function for the overloaded ">=" operator
 	bool operator<=(const OrderedArray<T>& other); // function for the overloaded "<=" operator
-	bool compareLeads(const Lead& lead1, const Lead& lead2); // Custom comparison function for Lead objects based on phoneAsId
 
 	~OrderedArray(); //destructor
 };
@@ -122,52 +120,6 @@ void OrderedArray<T>:: push(const T& newElement) {
 	lengthOfArr++;
 }
 
-template<class T>
-void OrderedArray<T>::pushLead(const Lead& newElement) {
-
-	//if the array is full
-	if (lengthOfArr >= maxSize)
-	{
-		//create a new array with the new size
-		maxSize += growSize;
-		T* newArr = new T[maxSize];
-
-		//copy the elements from the old array 
-		for (int i = 0; i < lengthOfArr; i++)
-		{
-			newArr[i] = array[i];
-		}
-
-		//delete the old array and pointer to the new array
-		delete[] array;
-		array = newArr;
-
-	}
-
-	//index to insert the new element of type Lead
-	int index = 0;
-	for (int i = 0; i < lengthOfArr; i++)
-	{
-		if (compareLeads(newElement, array[i]))
-		{
-			index++;
-		}
-	}
-	//shift the elements to the right
-	for (int i = 0; i < lengthOfArr - index; i++)
-	{
-		array[lengthOfArr - i] = array[lengthOfArr - i - 1];
-	}
-
-	//insert the new element
-	array[index] = newElement;
-	lengthOfArr++;
-}
-
-template<class T>
-bool OrderedArray<T>::compareLeads(const Lead& lead1, const Lead& lead2) {
-	return lead1.phoneAsId > lead2.phoneAsId;
-}
 template<class T>
 int OrderedArray<T>::length()
 {
