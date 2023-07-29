@@ -27,7 +27,7 @@ void declareSetsOfDoublesCustomConstructor();
 void leads();
 string returnPhoneNumber(string str);
 MySet<Lead> readLeadsFromCSV(string filename);
-MySet<Lead> writeLeadsToCSV(MySet<Lead> leads, string filename);
+void writeLeadsToCSV(MySet<Lead>& leads, string& filename);
 
 
 int main()
@@ -817,6 +817,8 @@ void leads() {
 	cout << endl;
 	cout<<"The Jane leads set size is: "<<janesLeads.length()<<endl;
 	cout << endl;
+
+	//common leqads for john and jane
 	cout << "***********************************************" << endl;
 	cout << "The common leads for John and Jane " << endl;
 	cout << "***********************************************" << endl;
@@ -824,23 +826,14 @@ void leads() {
 	MySet<Lead> commonSet = johnLeads | janesLeads;
 	commonSet.printLead();
 	cout << endl;
-	
-	cout << endl;
+	cout << "The common leads for John and Jane are: " << commonSet.length() << endl;
 
 	//write the common leads to a file
 	string commonLeadsFile = "C:\\leads\\common_leads.csv";
-	//MySet<Lead> commonLeads = writeLeadsToCSV(commonSet, commonLeadsFile);
-
-	ofstream outputfile;
-	outputfile.open(commonLeadsFile/*, ios_base::app*/);
-	//outputfile << "ID" << "," << "Lead" << endl;
-	for (int i = 0; i < commonSet.length(); i++) {
-		outputfile << "ID " << commonSet.getElement(i).getPhoneAsId() << ", " << "Lead " << commonSet.getElement(i).getLeadDetails() << endl;
-	}
-	outputfile.close();
-	
-	cout<<"The common leads for John and Jane are: "<< commonSet.length()<<endl;
+	writeLeadsToCSV(commonSet, commonLeadsFile);
 	cout<< endl;
+
+	//unique leads for John
 	cout << "**************************" << endl;
 	cout << "The unique leads for John  " << endl;
 	cout << "**************************" << endl;
@@ -848,6 +841,10 @@ void leads() {
 	MySet<Lead> uniqueJohn = johnLeads - janesLeads;
 	uniqueJohn.printLead();
 	cout << "\nThe unique leads for John are: " << uniqueJohn.length() << endl;
+	cout << endl;
+	//write unique leads for John
+	string uniqueJohnLeadsFile = "C:\\leads\\unique_john_leads.csv";
+	writeLeadsToCSV(uniqueJohn, uniqueJohnLeadsFile);
 	cout << endl;
 
 	cout << "**************************" << endl;
@@ -858,19 +855,32 @@ void leads() {
 	uniqueJane.printLead();
 	cout << "\nThe unique leads for Jane are: " << uniqueJane.length() << endl;
 	cout << endl;
+	//write unique leads for Jane
+	string uniqueJaneLeadsFile = "C:\\leads\\unique_jane_leads.csv";
+	writeLeadsToCSV(uniqueJane, uniqueJaneLeadsFile);
+	cout << endl;
 
 }
 //write the leads to the csv file
-//MySet<Lead> writeLeadsToCSV(MySet<Lead> commonSet, string commonLeadsFile) {
-//	ofstream outputfile;
-//	outputfile.open(commonLeadsFile/*, ios_base::app*/);
-//	outputfile << "ID" << "," << "Lead" << endl;
-//	for (int i = 0; i < commonSet.length(); i++) {
-//		outputfile << "ID " << commonSet.getElement(i).getPhoneAsId() << ", " << "Lead " << commonSet.getElement(i).getLeadDetails() << endl;
-//	}
-//	outputfile.close();
-//	return commonSet;
-//}
+void writeLeadsToCSV(MySet<Lead>& leadSet, string& commonLeadsFile) {
+	
+	ofstream outputfile;
+	outputfile.open(commonLeadsFile);
+	if (outputfile.is_open()) {
+		// rite each lead to the csv file
+		for (int i = 0; i < leadSet.length(); i++) {
+			Lead lead = leadSet.getElement(i);
+			outputfile << "ID " << lead.phoneAsId << ", " << "Lead " << lead.leadDetails << endl;
+		}
+
+		outputfile.close();
+		cout << "->> Leads successfully written to ->> " << commonLeadsFile << endl;
+	}
+	else {
+		cout << "Error: Unable to open " << commonLeadsFile << " for writing." << endl;
+	}
+
+}
 
 //read the leads from the csv file
 MySet<Lead> readLeadsFromCSV(string filename) {
