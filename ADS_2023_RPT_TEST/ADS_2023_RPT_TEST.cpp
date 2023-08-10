@@ -13,13 +13,13 @@ namespace ADS2023RPTTEST
 	TEST_CLASS(OrderedArrayTest)
 	{
 	public:
-		//test the default constructor
+		// test the default constructor
 		TEST_METHOD(TestDefaultConstructor)
 		{
 			OrderedArray<int> arr;
 			Assert::AreEqual(arr.length(), 0);
 			Assert::AreEqual(arr.capacity(), 0);
-			Assert::AreEqual(arr.getGrowSize(), 10);
+			Assert::AreEqual(arr.getGrowSize(), 1);
 			arr.push(2);
 			arr.push(3);
 			arr.push(4);
@@ -32,15 +32,16 @@ namespace ADS2023RPTTEST
 			arr.push(2);
 			Assert::AreEqual(arr.length(), 10);
 			Assert::AreEqual(arr.capacity(), 10);
-			Assert::AreEqual(arr.getGrowSize(), 10);
+			Assert::AreEqual(arr.getGrowSize(), 1);
 			arr.push(23);
 			arr.push(44);
 			Assert::AreEqual(arr.length(), 12);
-			Assert::AreEqual(arr.capacity(), 20);
-			Assert::AreEqual(arr.getGrowSize(), 10);
+			Assert::AreEqual(arr.capacity(), 12);
+			Assert::AreEqual(arr.getGrowSize(), 1);
 
 		}
-		//test the custom constructor
+
+		// test the custom constructor
 		TEST_METHOD(TestCustomConstructor)
 		{
 			OrderedArray<int> arr(5);
@@ -57,7 +58,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		//test the constructor exeptions with zero values
+		// test the constructor exeptions with zero values
 		TEST_METHOD(ConstructorExceptionTestZero)
 		{
 
@@ -67,7 +68,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		//test the exeptions with negative values
+		// test the exeptions with negative values
 		TEST_METHOD(ConstructorWithNegativeSize) {
 
 			void(*funct)() = [] {OrderedArray<int>arr(-1); };
@@ -75,7 +76,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		//test push function with integers
+		// test push function with integers
 		TEST_METHOD(TestPushInt)
 		{
 
@@ -94,7 +95,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		//test push function with double
+		// test push function with double
 		TEST_METHOD(TestPushDouble)
 		{
 			OrderedArray<double> arr(2);
@@ -109,7 +110,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		//test push function with float
+		// test push function with float
 		TEST_METHOD(TestPushFloat)
 		{
 
@@ -124,7 +125,7 @@ namespace ADS2023RPTTEST
 			Assert::AreNotEqual(arr2.sumOfTwoElements(), 4.8f);
 		}
 
-		//test length function
+		// test length function
 		TEST_METHOD(TestLength)
 		{
 
@@ -138,7 +139,7 @@ namespace ADS2023RPTTEST
 			Assert::AreEqual(arr.length(), 5);
 		}
 
-		//test getGrowSize function
+		// test getGrowSize function
 		TEST_METHOD(TestGetGrowSize)
 		{
 
@@ -184,7 +185,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		//test getelement function
+		// test getelement function
 		TEST_METHOD(TestGetElement)
 		{
 			OrderedArray<int> arr(1);
@@ -202,8 +203,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		//test remove function
-
+		// test remove function
 		TEST_METHOD(TestRemove)
 		{
 
@@ -230,7 +230,7 @@ namespace ADS2023RPTTEST
 			Assert::AreEqual(arr1.length(), 1);
 		}
 
-		//test search 
+		// test search 
 		TEST_METHOD(TestSearch)
 		{
 			OrderedArray<int> arr(1);
@@ -252,7 +252,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		//test clear function
+		// test clear function
 		TEST_METHOD(TestClear)
 		{
 
@@ -269,7 +269,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		//test sumOfTwoElements function
+		// test sumOfTwoElements function
 		TEST_METHOD(TestSumOfTwoElements)
 		{
 
@@ -299,7 +299,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		//test operator == function
+		// test operator == function
 		TEST_METHOD(TestOperator)
 		{
 			//Same size Array of ints
@@ -359,7 +359,7 @@ namespace ADS2023RPTTEST
 			Assert::IsFalse(arrDoubles == arrDoubles2);
 		}
 
-		//test operator != function
+		// test operator != function
 		TEST_METHOD(TestOperatorNotEqual)
 		{
 			//Same size Array of ints
@@ -419,7 +419,7 @@ namespace ADS2023RPTTEST
 			Assert::IsTrue(arrDoubles != arrDoubles2);
 		}
 
-		//test operator < function
+		// test operator < function
 		TEST_METHOD(TestOperatorLessThan)
 		{
 			//Same size Array of ints
@@ -479,7 +479,7 @@ namespace ADS2023RPTTEST
 			Assert::IsTrue(arrDoubles < arrDoubles2);
 		}
 
-		//test operator > function
+		// test operator > function
 		TEST_METHOD(TestOperatorGreaterThan)
 		{
 			//Same size Array of ints
@@ -539,7 +539,7 @@ namespace ADS2023RPTTEST
 			Assert::IsFalse(arrDoubles > arrDoubles2);
 		}
 
-		//test operator <= function
+		// test operator <= function
 		TEST_METHOD(TestOperatorLessThanEqualTo)
 		{
 			//Same size Array of ints
@@ -599,7 +599,7 @@ namespace ADS2023RPTTEST
 			Assert::IsTrue(arrDoubles <= arrDoubles2);
 		}
 
-		//test operator >= function
+		// test operator >= function
 		TEST_METHOD(TestOperatorGreaterThanEqualTo)
 		{
 			//Same size Array of ints
@@ -662,9 +662,9 @@ namespace ADS2023RPTTEST
 
 	TEST_CLASS(MySetTest)
 	{
-		//test MySet class
+		// test MySet class
 
-		//test push function for unique values
+		// test push function for unique values
 		TEST_METHOD(TestPushUnique)
 		{
 			MySet<int> set(1);
@@ -677,7 +677,7 @@ namespace ADS2023RPTTEST
 			Assert::AreEqual(set.length(), 5);
 		}
 
-		//test push function for non-unique values
+		// test push function for non-unique values
 		TEST_METHOD(TestPushNonUnique)
 		{
 			MySet<int> set(1);
