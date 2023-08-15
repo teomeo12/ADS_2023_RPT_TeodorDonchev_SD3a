@@ -1,16 +1,21 @@
 
 # Algorithms & Data Structures – Repeat Project – August 2023
 - - - -
-![logo](logo.png){ style="display: block; margin: 0 auto" }
 
+<p align="center" width="100%">
+    <img  src="logo.png">
+</p>
 - - - - 
 
 ## _Ordered Array and Set of Leads Program_
 
 Welcome to the OrderedArray and Set of Leads Program, a C++ project designed to implement and test ordered array and set functionality.
 
+<p align="center" width="100%">
+    <img  src="preview.gif">
+</p>
 
-![gif](preview.gif){  style="display: block; margin: 0 auto" }
+
 - - - - 
 ## Table of Contents
 
