@@ -36,7 +36,7 @@ int main()
 
 	do {
 		displayMenu();
-		cout << "\nPlease select an option from the menu:";
+		cout << "\n        Please select an option from the menu: -->> ";
 		cin >> menuChoice;
 
 		if(cin.fail() || cin.peek() != '\n') {
@@ -47,7 +47,15 @@ int main()
 			continue;
 		}
 		if(menuChoice ==0) {
-			cout << "Goodbye!" << endl;
+			cout << "\n";
+			cout << "                ******************************\n";
+			cout << "                *                            *\n";
+			cout << "                *          Goodbye!          *\n";
+			cout << "                *    Your journey ends here, *\n";
+			cout << "                *      but new ones await.   *\n";
+			cout << "                *                            *\n";
+			cout << "                ******************************\n";
+
 			break;
 		}
 		performAction(menuChoice);
@@ -91,56 +99,56 @@ void performAction(int menuChoice) {
 	try
 	    {	
 		switch (menuChoice) {
-	case 1:
-		arrayWithDefaultConstructor();
-		break;
-	case 2:
-		orderedArrayWithCustomConstructor();
-		break;
-	case 3:
-		orderedArrayOfDoublesCustomConstructor();
-		break;
-	case 4:
-		orderedArrayOfFloatsCustomConstructor();
-		break;
-	case 5:
-		orderedArrayOfLongsCustomConstructor();
-		break;
-	case 6:
-		compareEqualArrays();
-		break;
-	case 7:
-		compareNotEqualArrays();
-		break;
-	case 8:
-		compareGreatThanArray();
-		break;
-	case 9:
-		compareLessThanArray();
-		break;
-	case 10:
-		compareGreatThanEqualArray();
-		break;
-	case 11:
-		compareLessThanEqualArray();
-		break;
-	case 12:
-		declareSetsOfIntegersDefaultConstructor();
-		break;
-	case 13:
-		declareSetsOfDoublesCustomConstructor();
-		break;
-	case 14:
-		readLeads();
-		break;
-	case 15:
-		writeLeads();
-		break;
-	default:
-		cout << "Invalid input.  Try again: \n";
-		break;
+			case 1:
+				arrayWithDefaultConstructor();
+				break;
+			case 2:
+				orderedArrayWithCustomConstructor();
+				break;
+			case 3:
+				orderedArrayOfDoublesCustomConstructor();
+				break;
+			case 4:
+				orderedArrayOfFloatsCustomConstructor();
+				break;
+			case 5:
+				orderedArrayOfLongsCustomConstructor();
+				break;
+			case 6:
+				compareEqualArrays();
+				break;
+			case 7:
+				compareNotEqualArrays();
+				break;
+			case 8:
+				compareGreatThanArray();
+				break;
+			case 9:
+				compareLessThanArray();
+				break;
+			case 10:
+				compareGreatThanEqualArray();
+				break;
+			case 11:
+				compareLessThanEqualArray();
+				break;
+			case 12:
+				declareSetsOfIntegersDefaultConstructor();
+				break;
+			case 13:
+				declareSetsOfDoublesCustomConstructor();
+				break;
+			case 14:
+				readLeads();
+				break;
+			case 15:
+				writeLeads();
+				break;
+			default:
+				cout << "Invalid input.  Try again: \n";
+				break;
+		}
 	}
-}
 	    catch (invalid_argument e)
 	    {
 		cout << e.what() << endl;
@@ -208,6 +216,7 @@ void arrayWithDefaultConstructor() {
 	cout << "The array capacity is: " << array.capacity() << endl;
 	cout << "The array grow size is: " << array.getGrowSize() << endl;
 	cout << "The element at index 2 is: " << array.getElement(2) << endl;
+	cout << "The element at index 11 is: " << array.getElement(11) << endl;
 	cout << "\n*=========================================================*" << endl;
 
 	
@@ -325,6 +334,7 @@ void orderedArrayOfDoublesCustomConstructor(){
 	cout << "The array grow size is: " << arr1.getGrowSize() << endl;
 	cout << "The sum of the first two elements of the array is " << arr1.sumOfTwoElements() << endl;
 	cout << "The element at index 2 is: " << arr1.getElement(2) << endl;
+	cout << "The element at index 69 is: " << arr1.getElement(69) << endl;
 
 	cout << "*=========================================================*" << endl;
 	arr1.print();
