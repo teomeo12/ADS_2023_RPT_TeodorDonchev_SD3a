@@ -25,7 +25,7 @@ public:
 	int search(const T& searchKey);				   // search for an element in the array
 	void clear();								   // clear the array
 	void print();								   // print the array
-	T& sumOfTwoElements();		                   // sum of the first and second elements
+	T sumOfTwoElements();		                   // sum of the first and second elements
 	bool operator==(const OrderedArray<T>& other); // function for the overloaded "==" operator
 	bool operator!=(const OrderedArray<T>& other); // function for the overloaded "!=" operator
 	bool operator>(const OrderedArray<T>& other);  // function for the overloaded ">" operator
@@ -224,7 +224,7 @@ void OrderedArray<T>::print()
 
 // returnt the sum of the first and second element in the array
 template<class T>
- T& OrderedArray<T>::sumOfTwoElements()
+ T OrderedArray<T>::sumOfTwoElements()
 {
 	 T sum = 0;
 	return sum=array[0]+array[1];
