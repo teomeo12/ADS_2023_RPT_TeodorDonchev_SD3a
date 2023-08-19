@@ -153,11 +153,11 @@ void performAction(int menuChoice) {
 	    {
 		cout << e.what() << endl;
 	    }
-	    catch (int e)
+	    catch (int)
 	    {
 		cout << "An int exception occurred" << endl;
 	    }
-	    catch (double d)
+	    catch (double)
 	    {
 			cout<< "A double exception occurred" << endl;
 	    }
