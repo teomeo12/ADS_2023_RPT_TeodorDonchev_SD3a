@@ -159,12 +159,12 @@ MySet<Lead> readLeadsFromCSV(const string& filename) {
 		stringstream inputString(line);
 		
 		// get the lead name from the line
-		int lastCommaPos = line.rfind(",");
+		size_t lastCommaPos = line.rfind(",");
 		leadStr = line.substr(0, lastCommaPos);
         //cout << "lead: " << leadStr << endl;
 
 		// get the phone number and convert it to long
-		int delimeter = line.find_last_of("(");
+		size_t delimeter = line.find_last_of("(");
 		string prefixAndNumber = line.substr(delimeter);
 		phoneStr = prefixAndNumber.substr(1, 3) + prefixAndNumber.substr(5);
 		//cout << "phoneNumber: " << phoneStr << endl;
