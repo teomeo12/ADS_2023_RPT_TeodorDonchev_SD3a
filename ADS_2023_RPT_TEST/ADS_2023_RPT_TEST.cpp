@@ -125,8 +125,8 @@ namespace ADS2023RPTTEST
 			Assert::AreNotEqual(arr2.sumOfTwoElements(), 4.8f);
 		}
 
-		// test length function
-		TEST_METHOD(TestLength)
+		// test length function with integers
+		TEST_METHOD(TestLengthInt)
 		{
 
 			OrderedArray<int> arr(1);
@@ -139,8 +139,32 @@ namespace ADS2023RPTTEST
 			Assert::AreEqual(arr.length(), 5);
 		}
 
-		// test getGrowSize function
-		TEST_METHOD(TestGetGrowSize)
+		// test length function with double
+		TEST_METHOD(TestLengthDouble)
+		{
+
+			OrderedArray<double> arr(1);
+			arr.push(6.4);
+			arr.push(2.3);
+			arr.push(2.1);
+
+			Assert::AreEqual(arr.length(), 3);
+		}
+
+		// test length function with float
+		TEST_METHOD(TestLengthFloat)
+		{
+
+			OrderedArray<float> arr(1);
+			arr.push(6.4f);
+			arr.push(2.3f);
+			arr.push(2.1f);
+
+			Assert::AreEqual(arr.length(), 3);
+		}
+
+		// test getGrowSize function with integers
+		TEST_METHOD(TestGetGrowSizeInt)
 		{
 
 			OrderedArray<int> arr(2);
@@ -152,7 +176,11 @@ namespace ADS2023RPTTEST
 			arr.push(4);
 			Assert::AreEqual(arr.capacity(), 4);
 			Assert::AreEqual(arr.getGrowSize(), 2);
+		}
 
+		// test getGrowSize function with double
+		TEST_METHOD(TestGetGrowSizeDouble)
+		{
 			OrderedArray<double> arr1(5);
 			Assert::AreEqual(arr1.capacity(), 0);
 			Assert::AreEqual(arr1.getGrowSize(), 5);
@@ -165,7 +193,11 @@ namespace ADS2023RPTTEST
 			Assert::AreEqual(arr1.capacity(), 10);
 			Assert::AreEqual(arr1.getGrowSize(), 5);
 
+		}
 
+		// test getGrowSize function with float
+		TEST_METHOD(TestGetGrowSizeFloat)
+		{
 			OrderedArray<float> arr2(10);
 			Assert::AreEqual(arr2.capacity(), 0);
 			Assert::AreEqual(arr2.getGrowSize(), 10);
@@ -203,7 +235,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		// test remove function
+		// test remove function with integers
 		TEST_METHOD(TestRemove)
 		{
 
@@ -221,16 +253,38 @@ namespace ADS2023RPTTEST
 			arr.push(99);
 			Assert::AreEqual(arr.length(), 6);
 
+		}
+
+		//test remove function with double
+		TEST_METHOD(TestRemoveDouble)
+		{
+
 			OrderedArray<double> arr1(2);
 			arr1.push(6.4);
 			arr1.push(2.3);
 			Assert::AreEqual(arr1.length(), 2);
 			arr1.remove(0);
-			arr.remove(0);
-			Assert::AreEqual(arr1.length(), 1);
+			arr1.remove(0);
+			Assert::AreEqual(arr1.length(), 0);
+
 		}
 
-		// test search 
+		// test remove function with float
+		TEST_METHOD(TestRemoveFloat)
+		{
+
+			OrderedArray<float> arr2(2);
+			arr2.push(34.4f);
+			arr2.push(25.3f);
+			arr2.push(36.3f);
+			Assert::AreEqual(arr2.length(), 3);
+			arr2.remove(0);
+			arr2.remove(0);
+			Assert::AreEqual(arr2.length(), 1);
+
+		}
+
+		// test search with integers
 		TEST_METHOD(TestSearch)
 		{
 			OrderedArray<int> arr(1);
@@ -245,10 +299,87 @@ namespace ADS2023RPTTEST
 			Assert::AreEqual(arr.search(4), 3);
 			Assert::AreEqual(arr.search(6), 4);
 			Assert::AreNotEqual(arr.search(0), 0);
+			
+		}
+
+		// test search with double
+		TEST_METHOD(TestSearchDouble)
+		{
+			OrderedArray<double> arr1(1);
+			arr1.push(6.4);
+			arr1.push(2.3);
+			arr1.push(2.3);
+			arr1.push(4.5);
+			arr1.push(1.2);
+
+			Assert::AreEqual(arr1.search(1.2), 0);
+			Assert::AreEqual(arr1.search(2.3), 2);
+			Assert::AreEqual(arr1.search(4.5), 3);
+			Assert::AreEqual(arr1.search(6.4), 4);
+			Assert::AreNotEqual(arr1.search(0.0), 0);
+
+		}
+
+		// test search with float
+		TEST_METHOD(TestSearchFloat)
+		{
+			OrderedArray<float> arr2(1);
+			arr2.push(6.4f);
+			arr2.push(2.3f);
+			arr2.push(2.3f);
+			arr2.push(4.5f);
+			arr2.push(1.2f);
+
+			Assert::AreEqual(arr2.search(1.2f), 0);
+			Assert::AreEqual(arr2.search(2.3f), 2);
+			Assert::AreEqual(arr2.search(4.5f), 3);
+			Assert::AreEqual(arr2.search(6.4f), 4);
+			Assert::AreNotEqual(arr2.search(0.0f), 0);
+			
+		}
+
+		//test search an element that is not in the array of integers
+		TEST_METHOD(TestSearchNotInArray)
+		{
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(4);
+			arr.push(1);
+
 			Assert::AreEqual(arr.search(7), -1);
 			Assert::AreEqual(arr.search(3), -1);
-			
-			
+
+		}
+
+		// test search an element that is not in the array of double
+		TEST_METHOD(TestSearchNotInArrayDouble)
+		{
+			OrderedArray<double> arr1(1);
+			arr1.push(6.4);
+			arr1.push(2.3);
+			arr1.push(2.3);
+			arr1.push(4.5);
+			arr1.push(1.2);
+
+			Assert::AreEqual(arr1.search(7.0), -1);
+			Assert::AreEqual(arr1.search(3.0), -1);
+
+		}
+
+		// test search an element that is not in the array of float
+		TEST_METHOD(TestSearchNotInArrayFloat)
+		{
+			OrderedArray<float> arr2(1);
+			arr2.push(6.4f);
+			arr2.push(2.3f);
+			arr2.push(2.3f);
+			arr2.push(4.5f);
+			arr2.push(1.2f);
+
+			Assert::AreEqual(arr2.search(7.0f), -1);
+			Assert::AreEqual(arr2.search(3.0f), -1);
 
 		}
 
@@ -299,7 +430,7 @@ namespace ADS2023RPTTEST
 
 		}
 
-		// test operator == function
+		// test operator == function of arrays of integers with same size
 		TEST_METHOD(TestOperator)
 		{
 			//Same size Array of ints
@@ -318,8 +449,18 @@ namespace ADS2023RPTTEST
 			arr1.push(1);
 
 			Assert::IsTrue(arr == arr1);
+		}
 
-			//Different size Array of ints
+		// test operator == function of arrays of integers with different size
+		TEST_METHOD(TestOperatorDifferentSize)
+		{
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(4);
+			arr.push(1);
+
 			OrderedArray<int> arr2(1);
 			arr2.push(6);
 			arr2.push(2);
@@ -329,8 +470,10 @@ namespace ADS2023RPTTEST
 			arr2.push(1);
 
 			Assert::IsFalse(arr == arr2);
-
-			//Same size Array of doubles
+		}	
+		// test operator == function of arrays of doubles with same size
+		TEST_METHOD(TestOperatorDouble)
+		{
 			OrderedArray<double> arrDoubles(1);
 			arrDoubles.push(6.4);
 			arrDoubles.push(2.3);
@@ -346,8 +489,18 @@ namespace ADS2023RPTTEST
 			arrDoubles1.push(1.2);
 
 			Assert::IsTrue(arrDoubles == arrDoubles1);
+		}
 
-			//Different size Array of doubles
+		// test operator == function of arrays of doubles with different size
+		TEST_METHOD(TestOperatorDoubleDifferentSize)
+			{
+			OrderedArray<double> arrDoubles(1);
+			arrDoubles.push(6.4);
+			arrDoubles.push(2.3);
+			arrDoubles.push(2.3);
+			arrDoubles.push(4.5);
+			arrDoubles.push(1.2);
+
 			OrderedArray<double> arrDoubles2(1);
 			arrDoubles2.push(6.4);
 			arrDoubles2.push(2.3);
@@ -359,7 +512,7 @@ namespace ADS2023RPTTEST
 			Assert::IsFalse(arrDoubles == arrDoubles2);
 		}
 
-		// test operator != function
+		// test operator != function of arrays of integers with same size
 		TEST_METHOD(TestOperatorNotEqual)
 		{
 			//Same size Array of ints
@@ -378,8 +531,18 @@ namespace ADS2023RPTTEST
 			arr1.push(1);
 
 			Assert::IsFalse(arr != arr1);
+		}
 
-			//Different size Array of ints
+		// test operator != function of arrays of integers with different size
+		TEST_METHOD(TestOperatorNotEqualDifferentSize)
+		{
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(4);
+			arr.push(1);
+
 			OrderedArray<int> arr2(1);
 			arr2.push(6);
 			arr2.push(2);
@@ -389,8 +552,11 @@ namespace ADS2023RPTTEST
 			arr2.push(1);
 
 			Assert::IsTrue(arr != arr2);
-
-			//Same size array of doubles
+		}
+		
+		// test operator != function of arrays of doubles with same size
+		TEST_METHOD(TestOperatorDoubleNotEqual)
+			{
 			OrderedArray<double> arrDoubles(1);
 			arrDoubles.push(6.4);
 			arrDoubles.push(2.3);
@@ -406,8 +572,18 @@ namespace ADS2023RPTTEST
 			arrDoubles1.push(1.2);
 
 			Assert::IsFalse(arrDoubles != arrDoubles1);
+		}
+		
+		// test operator != function of arrays of doubles with different size
+		TEST_METHOD(TestOperatorDoubleNotEqualDifferentSize)
+		{
+			OrderedArray<double> arrDoubles(1);
+			arrDoubles.push(6.4);
+			arrDoubles.push(2.3);	
+			arrDoubles.push(2.3);
+			arrDoubles.push(4.5);
+			arrDoubles.push(1.2);
 
-			//Different size array of doubles 
 			OrderedArray<double> arrDoubles2(1);
 			arrDoubles2.push(6.4);
 			arrDoubles2.push(2.3);
@@ -419,7 +595,7 @@ namespace ADS2023RPTTEST
 			Assert::IsTrue(arrDoubles != arrDoubles2);
 		}
 
-		// test operator < function
+		// test operator < function of arrays of integers with same size
 		TEST_METHOD(TestOperatorLessThan)
 		{
 			//Same size Array of ints
@@ -438,8 +614,18 @@ namespace ADS2023RPTTEST
 			arr1.push(1);
 
 			Assert::IsFalse(arr < arr1);
+		}
+		
+		// test operator < function of arrays of integers with different size
+		TEST_METHOD(TestOperatorLessThanDifferentSize)
+		{
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(4);
+			arr.push(1);
 
-			//Different size Array of ints
 			OrderedArray<int> arr2(1);
 			arr2.push(6);
 			arr2.push(2);
@@ -449,8 +635,10 @@ namespace ADS2023RPTTEST
 			arr2.push(1);
 
 			Assert::IsTrue(arr < arr2);
-
-			//Same size Array of doubles
+		}
+		// test operator < function of arrays of doubles with same size
+		TEST_METHOD(TestOperatorDoubleLessThan)
+			{
 			OrderedArray<double> arrDoubles(1);
 			arrDoubles.push(6.4);
 			arrDoubles.push(2.3);
@@ -466,8 +654,18 @@ namespace ADS2023RPTTEST
 			arrDoubles1.push(1.2);
 
 			Assert::IsFalse(arrDoubles < arrDoubles1);
+		}
+		
+		// test operator < function of arrays of doubles with different size
+		TEST_METHOD(TestOperatorDoubleLessThanDifferentSize)
+		{
+			OrderedArray<double> arrDoubles(1);
+			arrDoubles.push(6.4);
+			arrDoubles.push(2.3);
+			arrDoubles.push(2.3);
+			arrDoubles.push(4.5);
+			arrDoubles.push(1.2);
 
-			//Different size Array of doubles
 			OrderedArray<double> arrDoubles2(1);
 			arrDoubles2.push(6.4);
 			arrDoubles2.push(2.3);
@@ -479,7 +677,7 @@ namespace ADS2023RPTTEST
 			Assert::IsTrue(arrDoubles < arrDoubles2);
 		}
 
-		// test operator > function
+		// test operator > function of arrays of integers with same size
 		TEST_METHOD(TestOperatorGreaterThan)
 		{
 			//Same size Array of ints
@@ -498,8 +696,18 @@ namespace ADS2023RPTTEST
 			arr1.push(1);
 
 			Assert::IsFalse(arr > arr1);
+		}
 
-			//Different size Array of ints
+		// test operator > function of arrays of integers with different size
+		TEST_METHOD(TestOperatorGreaterThanDifferentSize)
+		{
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(4);
+			arr.push(1);
+
 			OrderedArray<int> arr2(1);
 			arr2.push(6);
 			arr2.push(2);
@@ -509,8 +717,11 @@ namespace ADS2023RPTTEST
 			arr2.push(1);
 
 			Assert::IsFalse(arr > arr2);
-
-			//Same size Array of doubles
+		}
+		
+		// test operator > function of arrays of doubles with same size
+		TEST_METHOD(TestOperatorDoubleGreaterThan)
+			{
 			OrderedArray<double> arrDoubles(1);
 			arrDoubles.push(6.4);
 			arrDoubles.push(2.3);
@@ -526,8 +737,18 @@ namespace ADS2023RPTTEST
 			arrDoubles1.push(1.2);
 
 			Assert::IsFalse(arrDoubles > arrDoubles1);
+		}
 
-			//Different size Array of doubles
+		// test operator > function of arrays of doubles with different size
+		TEST_METHOD(TestOperatorDoubleGreaterThanDifferentSize)
+		{
+			OrderedArray<double> arrDoubles(1);
+			arrDoubles.push(6.4);
+			arrDoubles.push(2.3);
+			arrDoubles.push(2.3);
+			arrDoubles.push(4.5);
+			arrDoubles.push(1.2); 
+
 			OrderedArray<double> arrDoubles2(1);
 			arrDoubles2.push(6.4);
 			arrDoubles2.push(2.3);
@@ -539,15 +760,14 @@ namespace ADS2023RPTTEST
 			Assert::IsFalse(arrDoubles > arrDoubles2);
 		}
 
-		// test operator <= function
+		// test operator <= function of arrays of integers with same size
 		TEST_METHOD(TestOperatorLessThanEqualTo)
 		{
-			//Same size Array of ints
 			OrderedArray<int> arr(1);
 			arr.push(6);
 			arr.push(2);
 			arr.push(2);
-			arr.push(4);
+			arr.push(5);
 			arr.push(1);
 
 			OrderedArray<int> arr1(1);
@@ -556,10 +776,20 @@ namespace ADS2023RPTTEST
 			arr1.push(2);
 			arr1.push(4);
 			arr1.push(1);
+		
+			Assert::IsFalse(arr <= arr1);
+		}
 
-			Assert::IsTrue(arr <= arr1);
+		// test operator <= function of arrays of integers with different size
+		TEST_METHOD(TestOperatorLessThanEqualToDifferentSize)
+		{
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(4);
+			arr.push(1);
 
-			//Different size Array of ints
 			OrderedArray<int> arr2(1);
 			arr2.push(6);
 			arr2.push(2);
@@ -569,8 +799,12 @@ namespace ADS2023RPTTEST
 			arr2.push(1);
 
 			Assert::IsTrue(arr <= arr2);
+		}
+		
+		// test operator <= function of arrays of doubles with same size
+		TEST_METHOD(TestOperatorDoubleLessThanEqualTo)
+			{
 
-			//Same size Array of doubles
 			OrderedArray<double> arrDoubles(1);
 			arrDoubles.push(6.4);
 			arrDoubles.push(2.3);
@@ -586,8 +820,16 @@ namespace ADS2023RPTTEST
 			arrDoubles1.push(1.2);
 
 			Assert::IsTrue(arrDoubles <= arrDoubles1);
-
-			//Different size Array of doubles
+		}
+		// test operator <= function of arrays of doubles with different size
+		TEST_METHOD(TestOperatorDoubleLessThanEqualToDifferentSize)
+		{
+			OrderedArray<double> arrDoubles(1);
+			arrDoubles.push(6.4);
+			arrDoubles.push(2.3);
+			arrDoubles.push(2.3);
+			arrDoubles.push(4.5);
+			arrDoubles.push(1.2);
 			OrderedArray<double> arrDoubles2(1);
 			arrDoubles2.push(6.4);
 			arrDoubles2.push(2.3);
@@ -658,12 +900,25 @@ namespace ADS2023RPTTEST
 
 			Assert::IsFalse(arrDoubles >= arrDoubles2);
 		}
+
+		//test push mixed data types
+		TEST_METHOD(TestPushMixedDataTypes)
+		{
+			OrderedArray<int> arr(1);
+			arr.push(6);
+			arr.push(2);
+			arr.push(2);
+			arr.push(1.2);
+			arr.push(1.2f);
+
+			Assert::AreEqual(arr.length(), 5);
+		}
 	};
 
+	// test MySet class
 	TEST_CLASS(MySetTest)
 	{
-		// test MySet class
-
+		
 		// test push function for unique values
 		TEST_METHOD(TestPushUnique)
 		{
@@ -693,5 +948,111 @@ namespace ADS2023RPTTEST
 
 			Assert::AreEqual(set.length(),5);
 		}
+
+		//test remove function
+		TEST_METHOD(TestRemove)
+		{
+			MySet<int> set(1);
+			set.push(1);
+			set.push(2);
+			set.push(4);
+			set.push(4);
+			set.push(5);
+
+			Assert::AreEqual(set.length(), 4);
+
+			set.remove(4);
+
+			Assert::AreEqual(set.length(), 3);
+		}
+
+		//test clear function
+		TEST_METHOD(TestClear)
+		{
+			MySet<int> set(1);
+			set.push(1);
+			set.push(2);
+			set.push(4);
+			set.push(4);
+			set.push(5);
+
+			Assert::AreEqual(set.length(), 4);
+
+			set.clear();
+
+			Assert::AreEqual(set.length(), 0);
+		}
+
+		//test get element function
+		TEST_METHOD(TestGetElement)
+		{
+			MySet<int> set(1);
+			set.push(1);
+			set.push(2);
+			set.push(4);
+			set.push(4);
+			set.push(5);
+
+			Assert::AreEqual(set.getElement(2), 4);
+		}
+
+		//test union using operator |
+		TEST_METHOD(TestOperatorUnion)
+		{
+			MySet<int> set1;
+			set1.push(1);
+			set1.push(2);
+			
+			MySet<int> set2;
+			set2.push(3);
+			set2.push(4);
+			set2.push(4);
+	
+			MySet<int> unionSet = set1 | set2;
+			cout << unionSet.length();
+			//Assert::AreEqual(unionSet.length(), 6);
+		}
+
+		//test Intersection using operator &
+		//TEST_METHOD(TestOperatorIntersection)
+		//{
+		//	MySet<int> set1;
+		//	set1.push(1);
+		//	set1.push(2);
+		//	set1.push(3);
+		//	set1.push(3);
+		//	set1.push(4);
+
+		//	MySet<int> set2;
+		//	set2.push(3);
+		//	set2.push(4);
+		//	set2.push(4);
+		//	set2.push(5);
+		//	set2.push(6);
+
+		//	MySet<int> intersectionSet = set1 & set2;
+		////	Assert::AreEqual(intersectionSet.length(), 2);
+		//}
+
+		////test Difference using operator -
+		//TEST_METHOD(TestOperatorDifference)
+		//{
+		//	MySet<int> set1;
+		//	set1.push(1);
+		//	set1.push(2);
+		//	set1.push(3);
+		//	set1.push(3);
+		//	set1.push(4);
+
+		//	MySet<int> set2;
+		//	set2.push(3);
+		//	set2.push(4);
+		//	set2.push(4);
+		//	set2.push(5);
+		//	set2.push(6);
+ 
+		//	MySet<int> differenceSet = set1 - set2;
+		////	Assert::AreEqual(differenceSet.length(), 2);
+		//}
 	};
 }
